@@ -42,15 +42,22 @@ body {
   height: 100%;
   /*设置网页基本字体颜色为浅灰色*/
   color: #666;
+  background-color: #eaeaea;
   /*使字体渲染更顺滑*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  min-height: 100%;
 }
 
 /*设置基本字体配置*/
 body,button,input,select,textarea {
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+  /* font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif; */
+  font-family: lucida grande,lucida sans unicode,lucida,helvetica,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+  color: #1a1a1a;
+  line-height: 1.75;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
 /**
@@ -368,4 +375,266 @@ template {
 
 [hidden] {
   display: none;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0
+}
+
+::-webkit-scrollbar-button:end:decrement,::-webkit-scrollbar-button:start:increment {
+    display: none
+}
+
+::-webkit-scrollbar-corner {
+    display: block
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(0,0,0,.2)
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 8px;
+    background-color: rgba(0,0,0,.5)
+}
+
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-track {
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent
+}
+
+::-webkit-scrollbar-track:hover {
+    background-color: rgba(0,0,0,.15)
+}
+
+::-webkit-scrollbar-button:start {
+    width: 10px;
+    height: 10px;
+    background: url(../image/scrollbar_arrow.png) no-repeat 0 0
+}
+
+::-webkit-scrollbar-button:start:hover {
+    background: url(../image/scrollbar_arrow.png) no-repeat -15px 0
+}
+
+::-webkit-scrollbar-button:start:active {
+    background: url(../image/scrollbar_arrow.png) no-repeat -30px 0
+}
+
+::-webkit-scrollbar-button:end {
+    width: 10px;
+    height: 10px;
+    background: url(../image/scrollbar_arrow.png) no-repeat 0 -18px
+}
+
+::-webkit-scrollbar-button:end:hover {
+    background: url(../image/scrollbar_arrow.png) no-repeat -15px -18px
+}
+
+::-webkit-scrollbar-button:end:active {
+    background: url(../image/scrollbar_arrow.png) no-repeat -30px -18px
+}
+
+/* 字体图标 */
+@font-face {
+    font-family: iconfont;
+    src: url(./iconfont/iconfont.eot);
+    src: url(./iconfont/iconfont.eot#iefix) format("embedded-opentype"),url(./iconfont/iconfont.woff) format("woff"),url(./iconfont/iconfont.ttf) format("truetype"),url(./iconfont/iconfont.svg#iconfont) format("svg")
+}
+
+[class*=" icon-"],[class^=icon-] {
+    font-family: iconfont!important;
+    speak: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.icon-twitter:before {
+    content: "\E600"
+}
+
+.icon-facebook:before {
+    content: "\E601"
+}
+
+.icon-clock:before {
+    content: "\E602"
+}
+
+.icon-mail:before {
+    content: "\E609"
+}
+
+.icon-link:before {
+    content: "\E6AB"
+}
+
+.icon-search:before {
+    content: "\E65B"
+}
+
+.icon-smile:before {
+    content: "\E64A"
+}
+
+.icon-roundrightfill:before {
+    content: "\E65A"
+}
+
+.icon-list:before {
+    content: "\E682"
+}
+
+.icon-book:before {
+    content: "\E6FE"
+}
+
+.icon-home:before {
+    content: "\E6BB"
+}
+
+.icon-share:before {
+    content: "\E618"
+}
+
+.icon-back:before {
+    content: "\E625"
+}
+
+.icon-qq:before {
+    content: "\E62D"
+}
+
+.icon-weibo:before {
+    content: "\E619"
+}
+
+.icon-segmentfault:before {
+    content: "\E603"
+}
+
+.icon-sort:before {
+    content: "\E700"
+}
+
+.icon-jianshu:before {
+    content: "\E613"
+}
+
+.icon-circle-left:before {
+    content: "\E71F"
+}
+
+.icon-circle-right:before {
+    content: "\E720"
+}
+
+.icon-loading:before {
+    content: "\E614"
+}
+
+.icon-acfun:before {
+    content: "\E604"
+}
+
+.icon-close:before {
+    content: "\E60C"
+}
+
+.icon-tumblr:before {
+    content: "\E6B0"
+}
+
+.icon-calendar:before {
+    content: "\E667"
+}
+
+.icon-rss:before {
+    content: "\E877"
+}
+
+.icon-price-tags:before {
+    content: "\E6F9"
+}
+
+.icon-quo-left:before {
+    content: "\E7F5"
+}
+
+.icon-quo-right:before {
+    content: "\E7F6"
+}
+
+.icon-back1:before {
+    content: "\E64E"
+}
+
+.icon-github:before {
+    content: "\E735"
+}
+
+.icon-film:before {
+    content: "\E7B7"
+}
+
+.icon-weixin:before {
+    content: "\E61F"
+}
+
+.icon-qzone:before {
+    content: "\E680"
+}
+
+.icon-category:before {
+    content: "\E605"
+}
+
+.icon-douban:before {
+    content: "\E64C"
+}
+
+.icon-roundleftfill:before {
+    content: "\E799"
+}
+
+.icon-tuding:before {
+    content: "\E651"
+}
+
+.icon-zhihu:before {
+    content: "\E61B"
+}
+
+.icon-linkedin:before {
+    content: "\E6D4"
+}
+
+.icon-google:before {
+    content: "\E635"
+}
+
+.icon-plane:before {
+    content: "\E62F"
+}
+
+.icon-bilibili:before {
+    content: "\E622"
+}
+
+.icon-psn:before {
+    content: "\E6C7"
 }

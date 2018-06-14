@@ -1,22 +1,26 @@
-<template>
-  <div id="app">
+<template lang="html">
+  <div class="container" id="app">
+    <common-sidebar></common-sidebar>
     <router-view/>
   </div>
 </template>
 
 <script>
+import CommonSidebar from './common/sidebar/Sidebar'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    CommonSidebar
+  }
 }
 </script>
 
-<style>
-#app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
-}
+<style lang="stylus" scoped>
+  .container
+    position: relative
+    min-height: 100%
+    height: 100%
+    overflow-x: hidden
+    overflow-y: auto
 </style>
