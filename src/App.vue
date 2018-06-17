@@ -1,17 +1,21 @@
 <template lang="html">
   <div class="container" id="app">
-    <common-sidebar></common-sidebar>
-    <router-view/>
+    <app-sidebar></app-sidebar>
+    <app-main>
+      <router-view/>
+    </app-main>
   </div>
 </template>
 
 <script>
-import CommonSidebar from './common/sidebar/Sidebar'
+import AppSidebar from './pages/public/sidebar/Sidebar'
+import AppMain from './pages/public/main/Main'
 
 export default {
   name: 'App',
   components: {
-    CommonSidebar
+    AppSidebar,
+    AppMain
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template lang="html">
-  <div class="sidebar">
+  <div class="app-sidebar">
     <div class="sidebar-overlay"></div>
     <div class="sidebar-header">
       <header class="header-innner">
         <a class="header-profilepic" href="javascript:;">
-          <img class="header-avatar" src="../../assets/image/avatar.jpg" alt="">
+          <img class="header-avatar" src="../../../assets/image/avatar.jpg" alt="">
         </a>
         <hgroup class="header-author">
           <h1 class="author-wrap">
@@ -37,12 +37,6 @@
             <a class="social-link zhihu" target="_blank" href="https://www.zhihu.com/people/csdoker" title="zhihu">
               <i class="icon-zhihu"></i>
             </a>
-            <a class="social-link qq" target="_blank" href="https://user.qzone.qq.com/758371536" title="qq">
-              <i class="icon-qq"></i>
-            </a>
-            <a class="social-link bilibili" target="_blank" href="https://space.bilibili.com/528222" title="bilibili">
-              <i class="icon-bilibili"></i>
-            </a>
           </div>
         </nav>
       </header>
@@ -52,7 +46,7 @@
 
 <script>
 export default {
-  name: 'CommonSidebar',
+  name: 'AppSidebar',
   components: {
 
   },
@@ -65,7 +59,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .sidebar
+  .app-sidebar
     position: fixed
     width: 300px
     height: 100%
