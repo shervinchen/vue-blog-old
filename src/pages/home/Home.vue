@@ -1,19 +1,19 @@
 <template lang="html">
   <div class="main-home">
     <home-article-list></home-article-list>
-    <home-pagination></home-pagination>
+    <home-article-pagination></home-article-pagination>
   </div>
 </template>
 
 <script>
 import HomeArticleList from './components/ArticleList'
-import HomePagination from './components/Pagination'
+import HomeArticlePagination from './components/ArticlePagination'
 
 export default {
   name: 'Home',
   components: {
     HomeArticleList,
-    HomePagination
+    HomeArticlePagination
   },
   data () {
     return {

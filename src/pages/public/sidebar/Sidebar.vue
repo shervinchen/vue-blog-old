@@ -219,4 +219,7 @@ export default {
                 border: 1px solid #e15280
                 &:hover
                   border: 1px solid #e15280
+  @media screen and (max-width: 800px)
+    .app-sidebar
+      display: none
 </style>
