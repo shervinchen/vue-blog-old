@@ -26,4 +26,7 @@ export default {
 <style lang="stylus" scoped>
   .main-home
     margin-bottom: 80px
+  @media screen and (max-width: 800px)
+    .main-home
+      margin-bottom: 0
 </style>

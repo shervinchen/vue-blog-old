@@ -43,4 +43,7 @@ export default {
     &:hover
       .scroll-icon
         background-color: rgba(36, 193, 246, .9)
+  @media screen and (max-width: 800px)
+    .main-scroll
+      display: none
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-list">
-    <article class="article-item">
+    <article class="article-item" :class="{show:this.isShowToolBar}">
       <div class="article-inner">
         <header class="article-header">
           <h1 class="article-title">青海湖志事</h1>
@@ -35,8 +35,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'HomeArticleList'
+  name: 'HomeArticleList',
+  computed: {
+    ...mapState(['isShowToolBar'])
+  }
 }
 </script>
 
@@ -148,4 +153,32 @@ export default {
             transition: background .3s
             &:hover
               background-color: #3c3c3c
+      &.show
+        background: hsla(0,0%,100%,.3)
+  @media screen and (max-width: 800px)
+    .article-list
+      .article-item
+        padding: 10px
+        margin: 10px 0
+        border: 0
+        font-size: 16px
+        color: #555
+        .article-inner
+          .article-header
+            border-left: none
+            padding: 0
+            border-bottom: 1px dotted #ddd
+            .article-title
+              display: block
+              font-size: 18px
+              margin-bottom: 10px
+            .article-date
+              float: none
+          .article-entry
+            padding: 10px 0 30px
+          .article-info
+            min-height: 40px
+            padding-top: 10px
+            margin: 0
+            border-top: 1px solid #ddd
 </style>

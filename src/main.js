@@ -6,6 +6,7 @@ import router from './router'
 
 import fastClick from 'fastclick'
 import 'babel-polyfill'
+import store from './store'
 
 import 'style/_reset.css'
 import 'style/_border.css'
@@ -20,6 +21,7 @@ fastClick.attach(document.body)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

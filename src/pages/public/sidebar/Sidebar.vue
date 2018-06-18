@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="app-sidebar">
+  <div class="app-sidebar" :class="{show:this.isShowToolBar}">
     <div class="sidebar-overlay"></div>
     <div class="sidebar-header">
       <header class="header-innner">
@@ -45,10 +45,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'AppSidebar',
-  components: {
-
+  computed: {
+    ...mapState(['isShowToolBar'])
   },
   data () {
     return {
@@ -219,6 +221,8 @@ export default {
                 border: 1px solid #e15280
                 &:hover
                   border: 1px solid #e15280
+    &.show
+      box-shadow: 0 0 6px 0 rgba(0,0,0,.75)
   @media screen and (max-width: 800px)
     .app-sidebar
       display: none

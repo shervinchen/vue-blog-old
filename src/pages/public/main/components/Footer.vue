@@ -35,4 +35,8 @@ export default {
     text-align: center
     padding: 0 30px
     line-height: 20px
+  @media screen and (max-width: 800px)
+    .main-footer
+      position: relative
+      bottom: 0
 </style>
