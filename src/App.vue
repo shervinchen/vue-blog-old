@@ -1,7 +1,8 @@
 <template lang="html">
-  <div class="container" :class="{show:this.isShowToolBar}" id="app">
+  <div class="container" @click="handleContainerClick" :class="{show:this.isShowToolbar}" id="app">
     <app-canvas></app-canvas>
     <app-sidebar></app-sidebar>
+    <app-toolbar></app-toolbar>
     <app-main>
       <router-view/>
     </app-main>
@@ -11,24 +12,32 @@
 <script>
 import AppCanvas from './pages/public/canvas/Canvas'
 import AppSidebar from './pages/public/sidebar/Sidebar'
+import AppToolbar from './pages/public/toolbar/Toolbar'
 import AppMain from './pages/public/main/Main'
 
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     AppCanvas,
     AppSidebar,
+    AppToolbar,
     AppMain
   },
   computed: {
-    ...mapState(['isShowToolBar'])
+    ...mapState(['isShowToolbar'])
   },
   data () {
     return {
 
     }
+  },
+  methods: {
+    handleContainerClick () {
+      this.closeToolBar()
+    },
+    ...mapMutations(['closeToolBar'])
   }
 }
 </script>

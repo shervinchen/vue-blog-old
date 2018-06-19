@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="app-sidebar" :class="{show:this.isShowToolBar}">
+  <div class="app-sidebar" :class="{show:this.isShowToolbar}">
     <div class="sidebar-overlay"></div>
     <div class="sidebar-header">
       <header class="header-innner">
@@ -23,8 +23,8 @@
           </ul>
         </nav>
         <nav class="header-smart-menu">
-          <a class="smart-menu-link" href="javascript:;">所有文章</a>
-          <a class="smart-menu-link" href="javascript:;">关于我</a>
+          <a class="smart-menu-link" @click.stop="handleMenuClick(0)" href="javascript:;">所有文章</a>
+          <a class="smart-menu-link" @click.stop="handleMenuClick(1)" href="javascript:;">关于我</a>
         </nav>
         <nav class="header-nav">
           <div class="social">
@@ -45,17 +45,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'AppSidebar',
   computed: {
-    ...mapState(['isShowToolBar'])
+    ...mapState(['isShowToolbar'])
   },
   data () {
     return {
 
     }
+  },
+  methods: {
+    handleMenuClick (menuIndex) {
+      this.openToolBar(menuIndex)
+    },
+    ...mapMutations(['openToolBar'])
   }
 }
 </script>

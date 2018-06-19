@@ -3,8 +3,8 @@
 * CreateTime: 2018/6/13
 * Info: 定义项目中的公共样式
 */
-@charset 'utf-8';
 
+@charset 'utf-8';
 .bg-w {
   background-color: #fff;
 }
@@ -72,9 +72,11 @@
 /**
  * 清楚浮动「c ==> clear」
  */
+
 .c {
   zoom: 1;
 }
+
 .c::after {
   display: block;
   visibility: hidden;
@@ -86,16 +88,18 @@
 .clearfix {
   zoom: 1;
 }
-.clearfix:after,
-.clearfix:before {
-    content: "";
-    display: table;
+
+.clearfix:after, .clearfix:before {
+  content: "";
+  display: table;
 }
+
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /*position: fixed 的缩写*/
+
 .p-f {
   position: fixed;
   /*chrome 内核 浏览器 position: fixed 防止抖动*/
@@ -103,6 +107,7 @@
 }
 
 /*利用绝对定位宽高拉升原理，中心居中元素*/
+
 .middle {
   position: absolute;
   top: 0;
@@ -113,6 +118,7 @@
 }
 
 /*利用相对定位于 CSS3 使元素垂直居中*/
+
 .v-middle {
   position: relative;
   top: 50%;
@@ -123,6 +129,7 @@
 }
 
 /*元素计算宽高德盒子模型以 border 为外界限「bb ==> border-box」*/
+
 .bb {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -130,6 +137,7 @@
 }
 
 /*单行文本溢出显示省略号「to ==> text-overflow」*/
+
 .to {
   overflow: hidden;
   white-space: nowrap;
@@ -137,296 +145,544 @@
 }
 
 /* 禁止选中文本 */
-.usn{
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    -o-user-select:none;
-    user-select:none;
+
+.usn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
+
 /* 浮动 */
-.fl { float: left; }
-.fr { float: right; }
-.cf { zoom: 1; }
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.cf {
+  zoom: 1;
+}
+
 .cf:after {
-    content:".";
-    display:block;
-    clear:both;
-    visibility:hidden;
-    height:0;
-    overflow:hidden;
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }
 
 /* 元素类型 */
-.db { display: block; }
-.dn { display: none; }
-.di { display: inline }
-.dib {display: inline-block;}
-.transparent { opacity: 0 }
 
+.db {
+  display: block;
+}
+
+.dn {
+  display: none;
+}
+
+.di {
+  display: inline
+}
+
+.dib {
+  display: inline-block;
+}
+
+.transparent {
+  opacity: 0
+}
 
 /*文字排版、颜色*/
-.f12 { font-size:12px }
-.f14 { font-size:14px }
-.f16 { font-size:16px }
-.f18 { font-size:18px }
-.f20 { font-size:20px }
-.fb { font-weight:bold }
-.fn { font-weight:normal }
-.t2 { text-indent:2em }
-.red,a.red { color:#cc0031 }
-.darkblue,a.darkblue { color:#039 }
-.gray,a.gray { color:#878787 }
-.lh150 { line-height:150% }
-.lh180 { line-height:180% }
-.lh200 { line-height:200% }
-.unl { text-decoration:underline; }
-.no_unl { text-decoration:none; }
-.tl { text-align: left; }
-.tc { text-align: center; }
-.tr { text-align: right; }
-.tj { text-align: justify; text-justify: inter-ideograph; }
-.wn { /* 强制不换行 */
-    word-wrap:normal;
-    white-space:nowrap;
+
+.f12 {
+  font-size: 12px
 }
-.wb { /* 强制换行 */
-    white-space:normal;
-    word-wrap:break-word;
-    word-break:break-all;
+
+.f14 {
+  font-size: 14px
 }
-.wp { /* 保持空白序列*/
-    overflow:hidden;text-align:left;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;
+
+.f16 {
+  font-size: 16px
 }
-.wes { /* 多出部分用省略号表示 , 用于一行 */
-    overflow:hidden;
-    word-wrap:normal;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+
+.f18 {
+  font-size: 18px
 }
-.wes-2 { /* 适用于webkit内核和移动端 */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
+
+.f20 {
+  font-size: 20px
 }
+
+.fb {
+  font-weight: bold
+}
+
+.fn {
+  font-weight: normal
+}
+
+.t2 {
+  text-indent: 2em
+}
+
+.red, a.red {
+  color: #cc0031
+}
+
+.darkblue, a.darkblue {
+  color: #039
+}
+
+.gray, a.gray {
+  color: #878787
+}
+
+.lh150 {
+  line-height: 150%
+}
+
+.lh180 {
+  line-height: 180%
+}
+
+.lh200 {
+  line-height: 200%
+}
+
+.unl {
+  text-decoration: underline;
+}
+
+.no_unl {
+  text-decoration: none;
+}
+
+.tl {
+  text-align: left;
+}
+
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.tj {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.wn {
+  /* 强制不换行 */
+  word-wrap: normal;
+  white-space: nowrap;
+}
+
+.wb {
+  /* 强制换行 */
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.wp {
+  /* 保持空白序列*/
+  overflow: hidden;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.wes {
+  /* 多出部分用省略号表示 , 用于一行 */
+  overflow: hidden;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.wes-2 {
+  /* 适用于webkit内核和移动端 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .wes-3 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
+
 .wes-4 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 /* 溢出样式 */
-.ofh { overflow: hidden; }
-.ofs {overflow: scroll; }
-.ofa {overflow: auto; }
-.ofv {overflow: visible; }
+
+.ofh {
+  overflow: hidden;
+}
+
+.ofs {
+  overflow: scroll;
+}
+
+.ofa {
+  overflow: auto;
+}
+
+.ofv {
+  overflow: visible;
+}
 
 /* 定位方式 */
-.ps {position: static; }
-.pr {position: relative;zoom:1; }
-.pa {position: absolute; }
-.pf {position: fixed; }
 
+.ps {
+  position: static;
+}
+
+.pr {
+  position: relative;
+  zoom: 1;
+}
+
+.pa {
+  position: absolute;
+}
+
+.pf {
+  position: fixed;
+}
 
 /* 垂直对齐方式 */
-.vt {vertical-align: top; }
-.vm {vertical-align: middle; }
-.vb {vertical-align: bottom; }
 
+.vt {
+  vertical-align: top;
+}
+
+.vm {
+  vertical-align: middle;
+}
+
+.vb {
+  vertical-align: bottom;
+}
 
 /* 鼠标样式 */
-.csd {cursor: default; }
-.csp {cursor: pointer; }
-.csh {cursor: help; }
-.csm {cursor: move; }
+
+.csd {
+  cursor: default;
+}
+
+.csp {
+  cursor: pointer;
+}
+
+.csh {
+  cursor: help;
+}
+
+.csm {
+  cursor: move;
+}
 
 /* flex布局 */
+
 .df-sb {
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .df-sa {
-    display:flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /* 垂直居中 */
+
 .df-c {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .tb-c {
-    text-align:center;
-    display:table-cell;
-    vertical-align:middle;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
 }
+
 .ts-c {
-    position: absolute;
-    left: 50%; top: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
+
 .ts-mc {
-    position: absolute;
-    left: 0;right: 0;
-    bottom: 0; top: 0;
-    margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
 }
 
 /* 辅助 */
+
 .mask-fixed-wrapper {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left:0;top:0;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 999;
 }
+
 .bg-cover {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
+
 .bg-cover-all {
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 @-webkit-keyframes leftIn {
-    0%,60%,75%,90%,to {
-        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
-        animation-timing-function: cubic-bezier(.215,.61,.355,1)
-    }
-
-    0% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0)
-    }
-
-    60% {
-        -webkit-transform: translate3d(358px,0,0);
-        transform: translate3d(358px,0,0)
-    }
-
-    75% {
-        -webkit-transform: translate3d(323px,0,0);
-        transform: translate3d(323px,0,0)
-    }
-
-    90% {
-        -webkit-transform: translate3d(338px,0,0);
-        transform: translate3d(338px,0,0)
-    }
-
-    to {
-        -webkit-transform: translate3d(333px,0,0);
-        transform: translate3d(333px,0,0)
-    }
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+  60% {
+    -webkit-transform: translate3d(358px, 0, 0);
+    transform: translate3d(358px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(323px, 0, 0);
+    transform: translate3d(323px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(338px, 0, 0);
+    transform: translate3d(338px, 0, 0)
+  }
+  to {
+    -webkit-transform: translate3d(330px, 0, 0);
+    transform: translate3d(330px, 0, 0)
+  }
 }
 
 @keyframes leftIn {
-    0%,60%,75%,90%,to {
-        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
-        animation-timing-function: cubic-bezier(.215,.61,.355,1)
-    }
-
-    0% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0)
-    }
-
-    60% {
-        -webkit-transform: translate3d(358px,0,0);
-        transform: translate3d(358px,0,0)
-    }
-
-    75% {
-        -webkit-transform: translate3d(323px,0,0);
-        transform: translate3d(323px,0,0)
-    }
-
-    90% {
-        -webkit-transform: translate3d(338px,0,0);
-        transform: translate3d(338px,0,0)
-    }
-
-    to {
-        -webkit-transform: translate3d(333px,0,0);
-        transform: translate3d(333px,0,0)
-    }
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+  60% {
+    -webkit-transform: translate3d(358px, 0, 0);
+    transform: translate3d(358px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(323px, 0, 0);
+    transform: translate3d(323px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(338px, 0, 0);
+    transform: translate3d(338px, 0, 0)
+  }
+  to {
+    -webkit-transform: translate3d(330px, 0, 0);
+    transform: translate3d(330px, 0, 0)
+  }
 }
 
 @-webkit-keyframes leftOut {
-    0%,60%,75%,90%,to {
-        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
-        animation-timing-function: cubic-bezier(.215,.61,.355,1)
-    }
-
-    0% {
-        -webkit-transform: translate3d(333px,0,0);
-        transform: translate3d(333px,0,0)
-    }
-
-    60% {
-        -webkit-transform: translate3d(-25px,0,0);
-        transform: translate3d(-25px,0,0)
-    }
-
-    75% {
-        -webkit-transform: translate3d(10px,0,0);
-        transform: translate3d(10px,0,0)
-    }
-
-    90% {
-        -webkit-transform: translate3d(-5px,0,0);
-        transform: translate3d(-5px,0,0)
-    }
-
-    to {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0)
-    }
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translate3d(330px, 0, 0);
+    transform: translate3d(330px, 0, 0)
+  }
+  60% {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0)
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
 }
 
 @keyframes leftOut {
-    0%,60%,75%,90%,to {
-        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
-        animation-timing-function: cubic-bezier(.215,.61,.355,1)
-    }
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translate3d(330px, 0, 0);
+    transform: translate3d(330px, 0, 0)
+  }
+  60% {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0)
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+}
 
-    0% {
-        -webkit-transform: translate3d(333px,0,0);
-        transform: translate3d(333px,0,0)
-    }
+@-webkit-keyframes smallLeftIn {
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+  60% {
+    -webkit-transform: translate3d(325px, 0, 0);
+    transform: translate3d(325px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(290px, 0, 0);
+    transform: translate3d(290px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(305px, 0, 0);
+    transform: translate3d(305px, 0, 0)
+  }
+  to {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0)
+  }
+}
 
-    60% {
-        -webkit-transform: translate3d(-25px,0,0);
-        transform: translate3d(-25px,0,0)
-    }
+@keyframes smallLeftIn {
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+  60% {
+    -webkit-transform: translate3d(325px, 0, 0);
+    transform: translate3d(325px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(290px, 0, 0);
+    transform: translate3d(290px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(305px, 0, 0);
+    transform: translate3d(305px, 0, 0)
+  }
+  to {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0)
+  }
+}
 
-    75% {
-        -webkit-transform: translate3d(10px,0,0);
-        transform: translate3d(10px,0,0)
-    }
+@-webkit-keyframes smallleftOut {
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0)
+  }
+  60% {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0)
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
+}
 
-    90% {
-        -webkit-transform: translate3d(-5px,0,0);
-        transform: translate3d(-5px,0,0)
-    }
-
-    to {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0)
-    }
+@keyframes smallleftOut {
+  0%, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+  }
+  0% {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0)
+  }
+  60% {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    transform: translate3d(-25px, 0, 0)
+  }
+  75% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0)
+  }
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0)
+  }
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+  }
 }

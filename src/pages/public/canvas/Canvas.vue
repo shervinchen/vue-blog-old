@@ -1,5 +1,5 @@
 <template lang="html">
-  <canvas ref="canvas" class="app-canvas" :class="{show:this.isShowToolBar}"></canvas>
+  <canvas ref="canvas" class="app-canvas" :class="{show:this.isShowToolbar}"></canvas>
 </template>
 
 <script>
@@ -37,7 +37,7 @@ class Circle {
 export default {
   name: 'AppCanvas',
   computed: {
-    ...mapState(['isShowToolBar'])
+    ...mapState(['isShowToolbar'])
   },
   data () {
     return {

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-list">
-    <article class="article-item" :class="{show:this.isShowToolBar}">
+    <article class="article-item" :class="{show:this.isShowToolbar}">
       <div class="article-inner">
         <header class="article-header">
           <h1 class="article-title">青海湖志事</h1>
@@ -40,7 +40,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'HomeArticleList',
   computed: {
-    ...mapState(['isShowToolBar'])
+    ...mapState(['isShowToolbar'])
   }
 }
 </script>

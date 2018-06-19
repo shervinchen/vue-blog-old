@@ -1,7 +1,7 @@
 <template lang="html">
   <nav class="main-mobile-nav">
     <div class="mobile-overlay"></div>
-    <div class="mobile-btn">
+    <div class="mobile-btn" @click.stop="handleMenuClick(0)">
       <div class="mobile-btn-wrap">
         <i class="btn-icon icon-sort"></i>
       </div>
@@ -42,13 +42,24 @@
         </ul>
       </nav>
     </header>
-    <div class="mobile-mask"></div>
+    <div class="mobile-mask" :class="{show:this.isShowToolbar}"></div>
   </nav>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
-  name: 'MainMobileNav'
+  name: 'MainMobileNav',
+  computed: {
+    ...mapState(['isShowToolbar'])
+  },
+  methods: {
+    handleMenuClick (menuIndex) {
+      this.openToolBar(menuIndex)
+    },
+    ...mapMutations(['openToolBar'])
+  }
 }
 </script>
 
@@ -70,6 +81,8 @@ export default {
         height: 50px
         top: 0
         z-index: 4
+        &:hover
+          background-color: #444
         .mobile-btn-wrap
           position: absolute
           z-index: 101
@@ -237,4 +250,6 @@ export default {
         left: 0
         background: rgba(0, 0, 0, .85)
         z-index: 999
+        &.show
+          display: block
 </style>

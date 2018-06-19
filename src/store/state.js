@@ -1,3 +1,4 @@
 export default {
-  isShowToolBar: true
+  isShowToolbar: false,
+  isShowToolbarSection: [false, false]
 }

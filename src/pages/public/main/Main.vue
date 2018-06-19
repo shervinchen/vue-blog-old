@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="app-main" :class="appMainClass">
     <main-mobile-nav></main-mobile-nav>
-    <slot :isShowToolBar="isShowToolBar"></slot>
+    <slot></slot>
     <main-footer></main-footer>
     <main-scroll></main-scroll>
   </div>
@@ -22,11 +22,11 @@ export default {
     MainFooter
   },
   computed: {
-    ...mapState(['isShowToolBar']),
+    ...mapState(['isShowToolbar']),
     appMainClass () {
       return {
-        show: this.isShowToolBar,
-        hide: !this.isShowToolBar
+        show: this.isShowToolbar,
+        hide: !this.isShowToolbar
       }
     }
   }
@@ -60,4 +60,6 @@ export default {
     .app-main
       position: relative
       left: 0
+      &.show
+        left: -30px
 </style>
