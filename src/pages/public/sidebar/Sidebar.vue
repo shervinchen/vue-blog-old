@@ -15,7 +15,9 @@
         <nav class="header-menu">
           <ul class="menu-list">
             <li class="menu-item">
-              <a class="menu-link" href="javascript:;">主页</a>
+              <router-link :to="{ name: 'Home', params: {} }" class="menu-link">
+                主页
+              </router-link>
             </li>
             <li class="menu-item">
               <a class="menu-link" href="javascript:;">相册</a>
@@ -135,6 +137,7 @@ export default {
           display: -webkit-box
           -webkit-line-clamp: 2
           -webkit-box-orient: vertical
+          display: block
         .header-menu
           font-weight: 300
           line-height: 32px
@@ -194,7 +197,7 @@ export default {
               opacity: .7
               width: 28px
               height: 28px
-              line-height: 28px
+              line-height: 30px
               &:hover
                 opacity: 1
               &.github

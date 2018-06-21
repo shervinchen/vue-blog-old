@@ -4,7 +4,9 @@
     <app-sidebar></app-sidebar>
     <app-toolbar></app-toolbar>
     <app-main>
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </app-main>
   </div>
 </template>

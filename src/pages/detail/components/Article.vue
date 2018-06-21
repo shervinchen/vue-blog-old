@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="article-list">
-    <article class="article-item" :class="{show:this.isShowToolbar}">
+  <div class="article-wrap">
+    <article class="article-content" :class="{show:this.isShowToolbar}">
       <div class="article-inner">
         <header class="article-header">
           <h1 class="article-title">青海湖志事</h1>
@@ -26,9 +26,9 @@
               </li>
             </ul>
           </div>
-          <router-link :to="{ name: 'Detail', params: {} }" class="article-more-link">
-            展开全文&nbsp;>>
-          </router-link>
+          <div class="article-share">
+            <!-- TODO: 文章分享相关按钮 -->
+          </div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'HomeArticleList',
+  name: 'DetailArticle',
   computed: {
     ...mapState(['isShowToolbar'])
   }
@@ -48,8 +48,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .article-list
-    .article-item
+  .article-wrap
+    .article-content
       position: relative
       margin: 30px
       border: 1px solid #ddd
@@ -142,24 +142,13 @@ export default {
                     left: 2px
                   &:hover
                     opacity: .8
-          .article-more-link
-            margin-top: 0
-            text-align: left
-            float: right
-            background-color: #4d4d4d
-            color: #fff
-            font-size: 12px
-            padding: 5px 8px
-            line-height: 18px
-            border-radius: 2px
-            transition: background .3s
-            &:hover
-              background-color: #3c3c3c
+          .article-share
+            display: none
       &.show
         background: hsla(0,0%,100%,.3)
   @media screen and (max-width: 800px)
-    .article-list
-      .article-item
+    .article-wrap
+      .article-content
         padding: 10px
         margin: 10px 0
         border: 0

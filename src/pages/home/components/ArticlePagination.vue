@@ -62,4 +62,10 @@ export default {
       color: #4d4d4d
       opacity: 1
       cursor: default
+  @media screen and (max-width: 800px)
+    .article-pagination
+      .page-first, .page-last
+        display: none
+      .page-prev, .page-next
+        margin: 0 14px
 </style>

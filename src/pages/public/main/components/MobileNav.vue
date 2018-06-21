@@ -144,6 +144,7 @@ export default {
           -webkit-box-orient: vertical
           padding: 0 24px
           margin-bottom: 10px
+          display: block
           .subtitle-icon
             margin: 0 10px
             color: #d0d0d0
