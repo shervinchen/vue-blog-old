@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav class="article-pagination">
+  <nav class="page-nav">
     <a href="javascript:;" class="page-first">« First</a>
     <a href="javascript:;" class="page-prev">« Prev</a>
     <a href="javascript:;" class="page-number current">1</a>
@@ -14,12 +14,12 @@
 
 <script>
 export default {
-  name: 'HomeArticlePagination'
+  name: 'PageNav'
 }
 </script>
 
 <style lang="stylus" scoped>
-  .article-pagination
+  .page-nav
     text-align: center
     margin: 30px 0
     font-size: 0

@@ -1,32 +1,27 @@
 <template lang="html">
-  <div class="main-home">
-    <home-article-list></home-article-list>
+  <div class="main-archive">
+    <archive-list></archive-list>
     <page-nav></page-nav>
   </div>
 </template>
 
 <script>
-import HomeArticleList from './components/ArticleList'
+import ArchiveList from './components/ArchiveList'
 import PageNav from 'common/PageNav'
 
 export default {
-  name: 'Home',
+  name: 'Archive',
   components: {
-    HomeArticleList,
+    ArchiveList,
     PageNav
-  },
-  data () {
-    return {
-
-    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .main-home
+  .main-archive
     margin-bottom: 80px
   @media screen and (max-width: 800px)
-    .main-home
+    .main-archive
       margin-bottom: 0
 </style>

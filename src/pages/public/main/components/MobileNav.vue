@@ -37,7 +37,16 @@
             <a class="menu-link" href="javascript:;">主页</a>
           </li>
           <li class="menu-item">
+            <a class="menu-link" href="javascript:;">归档</a>
+          </li>
+          <li class="menu-item">
             <a class="menu-link" href="javascript:;">相册</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="javascript:;">读书</a>
+          </li>
+          <li class="menu-item">
+            <a class="menu-link" href="javascript:;">关于</a>
           </li>
         </ul>
       </nav>
@@ -213,7 +222,7 @@ export default {
           height: auto
           margin: 10px 0 20px
           .menu-list
-            width: 50%
+            width: 70%
             text-align: center
             display: -webkit-box
             display: -ms-flexbox
@@ -229,7 +238,7 @@ export default {
             border: 1px solid #a0a0a0
             border-radius: 3px
             .menu-item
-              width: 50%
+              width: 20%
               border-left: 1px solid #a0a0a0
               &:first-child
                 border-left: 0

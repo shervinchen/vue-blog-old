@@ -20,7 +20,22 @@
               </router-link>
             </li>
             <li class="menu-item">
+              <router-link :to="{ name: 'Archive', params: {} }" class="menu-link">
+                归档
+              </router-link>
+            </li>
+            <li class="menu-item">
               <a class="menu-link" href="javascript:;">相册</a>
+            </li>
+            <li class="menu-item">
+              <router-link :to="{ name: 'Reading', params: {} }" class="menu-link">
+                读书
+              </router-link>
+            </li>
+            <li class="menu-item">
+              <router-link :to="{ name: 'About', params: {} }" class="menu-link">
+                关于
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -138,6 +153,7 @@ export default {
           -webkit-line-clamp: 2
           -webkit-box-orient: vertical
           display: block
+          margin-bottom: 20px
         .header-menu
           font-weight: 300
           line-height: 32px
@@ -149,6 +165,7 @@ export default {
           -webkit-box-orient: horizontal
           -webkit-box-pack: center
           -webkit-box-align: center
+          margin-bottom: 20px
           .menu-list
             .menu-item
               .menu-link
