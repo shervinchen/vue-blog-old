@@ -24,7 +24,7 @@ export default {
     width: 40px
     height: 40px
     text-align: center
-    right: 30px
+    right: 40px
     bottom: 60px
     z-index: 999
     font-size: 14px

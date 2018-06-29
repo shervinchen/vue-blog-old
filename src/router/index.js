@@ -9,15 +9,32 @@ import About from '@/pages/about/About'
 
 Vue.use(Router)
 
+// const scrollBehavior = (to, from, savedPosition) => {
+//   let position = {}
+//   console.log(to.matched.some(m => m.meta.scrollToTop))
+//   if (to.matched.some(m => m.meta.scrollToTop)) {
+//     position.x = 0
+//     position.y = 0
+//   }
+//   return position
+// }
+
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: '/page/:page',
+          component: Home
+        }
+      ]
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'Detail',
       component: Detail
     },

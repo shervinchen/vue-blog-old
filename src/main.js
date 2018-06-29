@@ -8,11 +8,15 @@ import fastClick from 'fastclick'
 import 'babel-polyfill'
 import store from './store'
 
+import axios from 'axios'
+
 import 'style/_reset.css'
 import 'style/_border.css'
 import 'style/_property.css'
+import 'style/markdown.css'
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 // 解决移动端click 300ms延迟
 fastClick.attach(document.body)

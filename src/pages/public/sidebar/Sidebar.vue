@@ -14,34 +14,16 @@
         <p class="header-subtitle">每一位少年都有一颗屠龙的心</p>
         <nav class="header-menu">
           <ul class="menu-list">
-            <li class="menu-item">
-              <router-link :to="{ name: 'Home', params: {} }" class="menu-link">
-                主页
-              </router-link>
-            </li>
-            <li class="menu-item">
-              <router-link :to="{ name: 'Archive', params: {} }" class="menu-link">
-                归档
-              </router-link>
-            </li>
-            <li class="menu-item">
-              <a class="menu-link" href="javascript:;">相册</a>
-            </li>
-            <li class="menu-item">
-              <router-link :to="{ name: 'Reading', params: {} }" class="menu-link">
-                读书
-              </router-link>
-            </li>
-            <li class="menu-item">
-              <router-link :to="{ name: 'About', params: {} }" class="menu-link">
-                关于
+            <li class="menu-item" v-for="menuItem in menuList" :key="menuItem.itemId">
+              <router-link :to="{ name: menuItem.itemLink, params: {} }" class="menu-link">
+                {{menuItem.itemName}}
               </router-link>
             </li>
           </ul>
         </nav>
         <nav class="header-smart-menu">
-          <a class="smart-menu-link" @click.stop="handleMenuClick(0)" href="javascript:;">所有文章</a>
-          <a class="smart-menu-link" @click.stop="handleMenuClick(1)" href="javascript:;">关于我</a>
+          <a class="smart-menu-link" @click.stop="handleMenuClick(0)" href="javascript:;">搜索</a>
+          <a class="smart-menu-link" @click.stop="handleMenuClick(1)" href="javascript:;">友链</a>
         </nav>
         <nav class="header-nav">
           <div class="social">
@@ -71,7 +53,33 @@ export default {
   },
   data () {
     return {
-
+      menuList: [
+        {
+          itemId: 1,
+          itemName: '主页',
+          itemLink: 'Home'
+        },
+        {
+          itemId: 2,
+          itemName: '归档',
+          itemLink: 'Archive'
+        },
+        {
+          itemId: 3,
+          itemName: '相册',
+          itemLink: 'Album'
+        },
+        {
+          itemId: 4,
+          itemName: '读书',
+          itemLink: 'Reading'
+        },
+        {
+          itemId: 5,
+          itemName: '关于',
+          itemLink: 'About'
+        }
+      ]
     }
   },
   methods: {

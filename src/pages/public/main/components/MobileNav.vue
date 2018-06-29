@@ -151,7 +151,7 @@ export default {
           display: -webkit-box
           -webkit-line-clamp: 2
           -webkit-box-orient: vertical
-          padding: 0 24px
+          // padding: 0 24px
           margin-bottom: 10px
           display: block
           .subtitle-icon

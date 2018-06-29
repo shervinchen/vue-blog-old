@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="archive-list">
+  <div class="archive-list" :class="{show:this.isShowToolbar}">
     <section class="archive-wrap" v-for="(archive, index) in archives" :key="index">
       <div class="archive-year-wrap">
         <a href="javascript:;" class="archive-year">{{archive.archiveTime}}</a>
@@ -12,7 +12,7 @@
                 <i class="icon-calendar date-icon"></i>
                 <span class="date-time">{{archiveArticle.articleTime}}</span>
               </div>
-              <a href="javascript:;" class="archive-article-title">
+              <a href="javascript:;" class="archive-article-title" :title="archiveArticle.articleTitle">
                 {{archiveArticle.articleTitle}}
               </a>
               <div class="archive-article-info">
@@ -47,8 +47,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'ArchiveList',
+  computed: {
+    ...mapState(['isShowToolbar'])
+  },
   data () {
     return {
       archives: [
@@ -194,6 +199,11 @@ export default {
                   font-size: 12px
                   line-height: 16px
               .archive-article-title
+                display: inline-block
+                width: 70%
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
                 line-height: 36px
                 font-size: 16px
                 color: #333
@@ -277,7 +287,26 @@ export default {
             border-bottom: none
     &:first-child
       margin-top: 30px
+    &.show
+      background: hsla(0,0%,100%,.3)
   @media screen and (max-width: 800px)
     .archive-list
-      display: block
+      margin: 10px 10px 0
+      padding: 10px
+      .archive-wrap
+        .archive-year-wrap
+          position: relative
+          padding: 0
+          .archive-year
+            padding: 0
+        .archive
+          .archive-article
+            padding: 10px 0
+            margin-left: 0
+            .archive-article-inner
+              .archive-article-header
+                .archive-article-date
+                  top: 10px
+                .archive-article-title
+                  width: 50%
 </style>

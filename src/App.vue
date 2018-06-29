@@ -1,12 +1,13 @@
 <template lang="html">
-  <div class="container" @click="handleContainerClick" :class="{show:this.isShowToolbar}" id="app">
+  <div class="container" @click="handleContainerClick" :class="{show:this.isShowToolbar}" ref="app" id="app">
     <app-canvas></app-canvas>
     <app-sidebar></app-sidebar>
     <app-toolbar></app-toolbar>
     <app-main>
-      <keep-alive>
+      <!-- <keep-alive exclude="Home,Detail"> -->
+        <!-- <router-view :key="$route.path" /> -->
         <router-view/>
-      </keep-alive>
+      <!-- </keep-alive> -->
     </app-main>
   </div>
 </template>
@@ -40,6 +41,11 @@ export default {
       this.closeToolBar()
     },
     ...mapMutations(['closeToolBar'])
+  },
+  watch: {
+    '$route' (to, from) {
+      this.$refs.app.scrollTo(0, 0)
+    }
   }
 }
 </script>

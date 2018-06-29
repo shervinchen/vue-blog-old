@@ -12,11 +12,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8080',
         // 前后端联调时只用写后台的地址
-        // target: 'http://localhost:80',
+        // target: 'https://api.rekodsc.com', //接口域名
+        // secure: false,  // 如果是https接口，需要配置这个参数
+        target: 'http://localhost:3000', //接口域名
+        changeOrigin: true,
         pathRewrite: {
-          "^/api": '/static/mock'
+          '^/api': ''
         }
       }
     },

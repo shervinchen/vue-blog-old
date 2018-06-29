@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="main-detail">
-    <detail-article></detail-article>
+    <detail-article :articleData="articleData"></detail-article>
     <detail-article-nav></detail-article-nav>
     <detail-article-comment></detail-article-comment>
   </div>
@@ -20,8 +20,25 @@ export default {
   },
   data () {
     return {
-
+      articleData: {}
     }
+  },
+  methods: {
+    getArticleData () {
+      this.$http.get(process.env.API_HOST + '/article', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then((res) => {
+        res = res.data
+        if (res.ret && res.data) {
+          this.articleData = res.data
+        }
+      })
+    }
+  },
+  mounted () {
+    this.getArticleData()
   }
 }
 </script>

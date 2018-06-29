@@ -3,10 +3,10 @@
     <div class="toolbar-headar">
       <ul class="headar-menu">
         <li class="menu-item" @click="handleMenuClick(0)">
-          <a href="javascript:;" class="item-link" :class="{active: this.isShowToolbarSection[0]}">所有文章</a>
+          <a href="javascript:;" class="item-link" :class="{active: this.isShowToolbarSection[0]}">搜索</a>
         </li>
         <li class="menu-item" @click="handleMenuClick(1)">
-          <a href="javascript:;" class="item-link" :class="{active: this.isShowToolbarSection[1]}">关于我</a>
+          <a href="javascript:;" class="item-link" :class="{active: this.isShowToolbarSection[1]}">友链</a>
         </li>
       </ul>
     </div>
@@ -49,7 +49,35 @@
           </li>
         </ul>
       </section>
-      <section v-show="this.isShowToolbarSection[1]" class="section-about">
+      <section v-show="this.isShowToolbarSection[1]" class="section-friends">
+        <ul class="friends-list">
+          <li class="friends-item">
+            <a href="javascript:;" target="_blank" class="friend-link">
+              <i class="icon-quo-left link-icon"></i>
+              测试测试测试
+            </a>
+          </li>
+          <li class="friends-item">
+            <a href="javascript:;" target="_blank" class="friend-link">
+              <i class="icon-quo-left link-icon"></i>
+              测试测试测试
+            </a>
+          </li>
+          <li class="friends-item">
+            <a href="javascript:;" target="_blank" class="friend-link">
+              <i class="icon-quo-left link-icon"></i>
+              测试测试测试
+            </a>
+          </li>
+          <li class="friends-item">
+            <a href="javascript:;" target="_blank" class="friend-link">
+              <i class="icon-quo-left link-icon"></i>
+              测试测试测试
+            </a>
+          </li>
+        </ul>
+      </section>
+      <!-- <section v-show="this.isShowToolbarSection[1]" class="section-about">
         <div class="about-wrap">
           Csdoker，
           <br>
@@ -65,7 +93,7 @@
           <br>
           测试5测试5
         </div>
-      </section>
+      </section> -->
     </div>
   </div>
 </template>
@@ -195,7 +223,7 @@ export default {
                 width: 14px
                 height: 14px
                 position: absolute
-                top: 8px
+                top: 10px
                 left: 0
                 -webkit-transform: translateY(-50%)
                 border-radius: 100%
@@ -332,6 +360,8 @@ export default {
                   font-size: 12px
                   margin-right: 6px
                   cursor: pointer
+            &:hover
+              background: hsla(0,0%,100%,.2)
       .section-about
         height: 100%
         color: #e5e5e5
@@ -352,6 +382,35 @@ export default {
           color: #fffdd8
           text-shadow: 1px 1px rgba(77,77,77,.45)
           font-size: 16px
+      .section-friends
+        height: 100%
+        color: #e5e5e5
+        overflow: hidden
+        overflow-y: auto
+        padding-top: 30px
+        .friends-list
+          margin-top: 10px
+          color: rgba(77,77,77,.75)
+          -webkit-overflow-scrolling: touch;
+          overflow-scrolling: touch;
+          overflow-y: auto
+          .friends-item
+            padding: 10px 20px
+            border-bottom: 1px dotted #dcdcdc
+            &:hover
+              background: hsla(0,0%,100%,.2)
+            .friend-link
+              overflow: hidden
+              white-space: nowrap
+              text-overflow: ellipsis
+              display: block
+              color: #fffff8
+              text-shadow: 1px 1px rgba(77,77,77,.25)
+              line-height: 28px
+              font-size: 16px
+              .link-icon
+                margin-right: 10px
+                color: #fffdd8
     &.show
       opacity: 1
       -webkit-animation-duration: .8s;
@@ -417,4 +476,8 @@ export default {
               border-right: 0
       .toolbar-wrap
         padding-top: 56px
+        .section-friends
+          .friends-list
+            .friends-item
+              padding: 5px 20px
 </style>

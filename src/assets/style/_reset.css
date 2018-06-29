@@ -15,11 +15,11 @@ html {
   /*标准字体大小设置 14 像素「rem 参照对象」*/
   font-size: 14px;
   /*滚动事件发生在 html 元素上；JS 中可以监听 html 的滚动*/
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /*让 html 和浏览器窗口高度一致*/
   height: 100%;
   /*少数浏览器默认背景色为浅灰色，所以设置默认背景颜色为纯白*/
-  background-color: #fff;
+  /* background-color: #fff; */
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
@@ -27,7 +27,7 @@ html {
 html,
 body {
   /*body 宽度大 html 度时，某些浏览器会出现内部滚动条；所以设置「html、body」宽度相同且「overflow-x: hidden」*/
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100%;
   /*取消部分浏览器点击有阴影*/
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -57,7 +57,7 @@ body,button,input,select,textarea {
   color: #1a1a1a;
   line-height: 1.75;
   font-size: 16px;
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 
 /**
@@ -227,6 +227,7 @@ pre {
 
 a {
   background-color: transparent;
+  color: #08c;
 }
 
 abbr[title] {

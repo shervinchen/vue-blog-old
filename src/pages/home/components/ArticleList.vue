@@ -1,18 +1,22 @@
 <template lang="html">
   <div class="article-list">
-    <article class="article-item" :class="{show:this.isShowToolbar}">
+    <article v-for="(articleData, index) in articleDatas" :key="articleData.articleId" class="article-item" :class="{show: isShowToolbars[index]}">
       <div class="article-inner">
         <header class="article-header">
-          <h1 class="article-title">青海湖志事</h1>
+          <router-link tag="h1" :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-title">
+            {{articleData.articleTitle}}
+          </router-link>
           <div class="article-date">
             <i class="icon-calendar date-icon"></i>
-            <span class="date-time">2018-04-25</span>
+            <span class="date-time">{{articleData.articleDate}}</span>
           </div>
         </header>
         <div class="article-entry">
           <!-- markdown渲染数据 -->
-          <p>test</p>
-          <a href="javascript:;" class="article-more">more&nbsp;>></a>
+          <vue-markdown>{{articleData.articleContent}}</vue-markdown>
+          <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more">
+            more&nbsp;>>
+          </router-link>
         </div>
         <div class="article-info">
           <div class="article-tag">
@@ -26,7 +30,7 @@
               </li>
             </ul>
           </div>
-          <router-link :to="{ name: 'Detail', params: {} }" class="article-more-link">
+          <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more-link">
             展开全文&nbsp;>>
           </router-link>
           <div class="clearfix"></div>
@@ -37,12 +41,26 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import { mapState } from 'vuex'
 
 export default {
   name: 'HomeArticleList',
+  components: {
+    VueMarkdown
+  },
+  props: {
+    articleDatas: Array
+  },
   computed: {
-    ...mapState(['isShowToolbar'])
+    ...mapState(['isShowToolbar']),
+    isShowToolbars () {
+      const isShowToolbars = []
+      this.articleDatas.forEach((item, index) => {
+        isShowToolbars.push(this.isShowToolbar)
+      })
+      return isShowToolbars
+    }
   }
 }
 </script>
@@ -71,6 +89,7 @@ export default {
             font-size: 26px
             transition: color .3s
             margin: 0
+            cursor: pointer
           .article-date
             float: right
             margin-right: 8%

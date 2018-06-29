@@ -3,16 +3,16 @@
     <article class="article-content" :class="{show:this.isShowToolbar}">
       <div class="article-inner">
         <header class="article-header">
-          <h1 class="article-title">青海湖志事</h1>
+          <h1 class="article-title">{{articleData.articleTitle}}</h1>
           <div class="article-date">
             <i class="icon-calendar date-icon"></i>
-            <span class="date-time">2018-04-25</span>
+            <span class="date-time">{{articleData.articleDate}}</span>
           </div>
         </header>
         <div class="article-entry">
           <!-- markdown渲染数据 -->
-          <p>test</p>
-          <a href="javascript:;" class="article-more">more&nbsp;>></a>
+          <vue-markdown v-if="articleData.articleContent">{{articleData.articleContent}}</vue-markdown>
+          <!-- <a href="javascript:;" class="article-more">more&nbsp;>></a> -->
         </div>
         <div class="article-info">
           <div class="article-tag">
@@ -37,10 +37,17 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import { mapState } from 'vuex'
 
 export default {
   name: 'DetailArticle',
+  components: {
+    VueMarkdown
+  },
+  props: {
+    articleData: Object
+  },
   computed: {
     ...mapState(['isShowToolbar'])
   }
