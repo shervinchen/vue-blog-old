@@ -41,7 +41,13 @@ export default new Router({
     {
       path: '/archive',
       name: 'Archive',
-      component: Archive
+      component: Archive,
+      children: [
+        {
+          path: '/archive/page/:page',
+          component: Archive
+        }
+      ]
     },
     {
       path: '/album',

@@ -1,20 +1,22 @@
 <template lang="html">
   <div class="archive-list" :class="{show:this.isShowToolbar}">
-    <section class="archive-wrap" v-for="(archive, index) in archives" :key="index">
+    <section class="archive-wrap" v-for="(archiveData, index) in archives" :key="index">
       <div class="archive-year-wrap">
-        <a href="javascript:;" class="archive-year">{{archive.archiveTime}}</a>
+        <a href="javascript:;" class="archive-year">{{archiveData.archiveDate}}</a>
       </div>
       <div class="archive">
-        <article class="archive-article" v-for="archiveArticle in archive.archiveArticles" :key="archiveArticle.articleId">
+        <article class="archive-article" v-for="archiveArticle in archiveData.archiveArticles" :key="archiveArticle.articleId">
           <div class="archive-article-inner">
             <header class="archive-article-header">
               <div class="archive-article-date">
                 <i class="icon-calendar date-icon"></i>
-                <span class="date-time">{{archiveArticle.articleTime}}</span>
+                <span class="date-time">{{archiveArticle.articleDate}}</span>
               </div>
-              <a href="javascript:;" class="archive-article-title" :title="archiveArticle.articleTitle">
-                {{archiveArticle.articleTitle}}
-              </a>
+              <h1 class="archive-article-title">
+                <router-link :title="archiveArticle.articleTitle" class="archive-article-title-link" :to="{ name: 'Detail', params: { id: archiveArticle.articleId } }">
+                  {{archiveArticle.articleTitle}}
+                </router-link>
+              </h1>
               <div class="archive-article-info">
                 <div class="archive-article-tag">
                   <i class="icon-price-tags article-tag-icon"></i>
@@ -26,7 +28,7 @@
                     </li>
                   </ul>
                 </div>
-                <div class="archive-article-category">
+                <!-- <div class="archive-article-category">
                   <i class="icon-book article-tag-icon"></i>
                   <ul class="article-tag-list">
                     <li class="article-tag-list-item" v-for="(articleCategory, index) in archiveArticle.articleCategories" :key="index">
@@ -35,7 +37,7 @@
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> -->
               </div>
               <div class="clearfix"></div>
             </header>
@@ -51,94 +53,29 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'ArchiveList',
+  props: {
+    archiveDatas: Array
+  },
   computed: {
+    archives () {
+      const archives = this.archiveDatas[0]
+      archives.forEach((archiveData, index) => {
+        archiveData.archiveArticles.forEach((archiveArticle, index) => {
+          archiveArticle.articleTags.forEach((articleTag, index) => {
+            articleTag.articleTagColor = 'color' + Math.round(1 + Math.random() * 4)
+          })
+          archiveArticle.articleCategories.forEach((articleCategory, index) => {
+            articleCategory.articleCategoryColor = 'color' + Math.round(1 + Math.random() * 4)
+          })
+        })
+      })
+      return archives
+    },
     ...mapState(['isShowToolbar'])
   },
   data () {
     return {
-      archives: [
-        {
-          archiveTime: '2018',
-          archiveArticles: [
-            {
-              articleId: 1,
-              articleTitle: '自动化代码规范检测 — CodeSniffer',
-              articleTime: '2018-04-12',
-              articleTags: [
-                {
-                  articleTagName: '工具',
-                  articleTagColor: 'color3'
-                }
-              ],
-              articleCategories: [
-                {
-                  articleCategoryName: '工具',
-                  articleCategoryColor: 'color3'
-                }
-              ]
-            },
-            {
-              articleId: 2,
-              articleTitle: '我的博客发布上线方案 — Hexo',
-              articleTime: '2018-03-03',
-              articleTags: [
-                {
-                  articleTagName: '工具',
-                  articleTagColor: 'color3'
-                },
-                {
-                  articleTagName: '系统设计',
-                  articleTagColor: 'color5'
-                }
-              ],
-              articleCategories: [
-                {
-                  articleCategoryName: '系统设计',
-                  articleCategoryColor: 'color5'
-                }
-              ]
-            },
-            {
-              articleId: 3,
-              articleTitle: '自如2018新年活动系统 — 抢红包',
-              articleTime: '2018-01-30',
-              articleTags: [
-                {
-                  articleTagName: 'PHP',
-                  articleTagColor: 'color4'
-                },
-                {
-                  articleTagName: '系统设计',
-                  articleTagColor: 'color5'
-                }
-              ],
-              articleCategories: [
-                {
-                  articleCategoryName: '系统设计',
-                  articleCategoryColor: 'color5'
-                }
-              ]
-            },
-            {
-              articleId: 4,
-              articleTitle: 'Linux日常使用技巧集',
-              articleTime: '2018-01-01',
-              articleTags: [
-                {
-                  articleTagName: 'PHP',
-                  articleTagColor: 'color1'
-                }
-              ],
-              articleCategories: [
-                {
-                  articleCategoryName: 'PHP',
-                  articleCategoryColor: 'color1'
-                }
-              ]
-            }
-          ]
-        }
-      ]
+
     }
   }
 }
@@ -148,10 +85,10 @@ export default {
   .archive-list
     background-color: #fff
     margin: 0 30px
-    padding-right: 60px
-    border-bottom: 1px solid #eee
     .archive-wrap
       position: relative
+      padding-right: 60px
+      border-bottom: 1px solid #eee
       .archive-year-wrap
         line-height: 36px
         width: 200px
@@ -169,7 +106,7 @@ export default {
         position: relative
         .archive-article
           margin-left: 200px
-          padding: 20px 0
+          padding: 20px 0 28px 0
           border-bottom: 1px solid #eee
           border-top: 1px solid #fff
           position: relative
@@ -204,12 +141,14 @@ export default {
                 overflow: hidden
                 text-overflow: ellipsis
                 white-space: nowrap
-                line-height: 36px
+                line-height: 30px
                 font-size: 16px
-                color: #333
                 transition: color .3s
-                &:hover
-                  color: #657b83
+                margin: 0
+                .archive-article-title-link
+                  color: #333
+                  &:hover
+                    color: #657b83
               .archive-article-info
                 border: none
                 font-size: 0
@@ -227,6 +166,7 @@ export default {
                     float: left
                     .article-tag-list-item
                       float: left
+                      margin: 5px 0
                       .article-tag-list-link
                         display: inline-block
                         font-weight: 400
@@ -238,7 +178,7 @@ export default {
                         padding: 0 5px 0 10px
                         position: relative
                         border-radius: 0 5px 5px 0
-                        margin: 5px 9px 5px 8px
+                        margin: 0 9px 0 8px
                         font-family: Menlo,Monaco,Andale Mono,lucida console,Courier New,monospace
                         &:hover
                           opacity: .8
@@ -285,15 +225,22 @@ export default {
             border-top: none
           &:last-child
             border-bottom: none
-    &:first-child
-      margin-top: 30px
     &.show
       background: hsla(0,0%,100%,.3)
+    &:first-child
+      margin-top: 30px
   @media screen and (max-width: 800px)
     .archive-list
       margin: 10px 10px 0
-      padding: 10px
+      background-color: #eaeaea
+      &:first-child
+        margin-top: 30px
       .archive-wrap
+        margin-top: 10px
+        background-color: #fff
+        padding: 10px
+        &:first-child
+          margin-top: 0
         .archive-year-wrap
           position: relative
           padding: 0
