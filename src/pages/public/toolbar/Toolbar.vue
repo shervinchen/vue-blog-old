@@ -13,7 +13,7 @@
     <div class="toolbar-wrap">
       <section v-show="this.isShowToolbarSection[0]" class="section-archive">
         <div class="archive-search">
-          <input type="text" class="search-input" v-model="search" placeholder="find something...">
+          <input type="text" class="search-input" v-model="keyword" placeholder="find something...">
           <i class="icon-search search-icon" v-show="isSearchEmpty"></i>
           <i class="icon-close search-icon" v-show="!isSearchEmpty"></i>
         </div>
@@ -23,28 +23,31 @@
             <input @click="toggleTag" type="checkbox" class="tag-checkbox">
           </div>
           <ul class="tag-list" v-show="isShowTags">
-            <li class="tag-item">
-              <a href="javascript:;" class="tag-link color1">设计</a>
+            <li class="tag-item" @click="handleArticleTagClick(articleTag)" v-for="(articleTag, index) in articleTagList" :key="index">
+              <a href="javascript:;" class="tag-link" :class="articleTagColorList[index]">{{articleTag}}</a>
             </li>
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="archive-list">
-          <li class="archive-item">
+          <li class="archive-item" v-for="archiveItem in archiveList" :key="archiveItem.articleId">
             <a href="javascript:;" class="item-title">
               <i class="icon-quo-left title-icon"></i>
-              <span class="title-name">青海湖志事</span>
+              <router-link :title="archiveItem.articleTitle" class="title-name" :to="{ name: 'Detail', params: { id: archiveItem.articleId } }">
+                {{archiveItem.articleTitle}}
+              </router-link>
             </a>
             <div class="item-info">
-              <p class="info-time">
+              <!-- <p class="info-time"> -->
                 <i class="icon-calendar time-icon"></i>
-                <span class="time-date">2018-04-25</span>
-              </p>
-              <p class="info-tag">
+                <span class="time-date">{{archiveItem.articleDate}}</span>
+              <!-- </p> -->
+              <!-- <p class="info-tag"> -->
                 <i class="icon-price-tags tag-icon"></i>
-                <span class="tag-item">#旧事</span>
-                <span class="tag-item">#旧事</span>
-              </p>
+                <span class="tag-item" @click="handleArticleTagClick(articleTag.articleTagName)" v-for="(articleTag, index) in archiveItem.articleTags" :key="index">
+                  #{{articleTag.articleTagName}}
+                </span>
+              <!-- </p> -->
             </div>
           </li>
         </ul>
@@ -107,29 +110,80 @@ export default {
 
   },
   computed: {
-    ...mapState(['isShowToolbar', 'isShowToolbarSection']),
+    ...mapState(['toolbarKeyword', 'isShowToolbar', 'isShowToolbarSection']),
     appToolbarClass () {
       return {
         show: this.isShowToolbar,
         hide: !this.isShowToolbar
       }
+    },
+    keyword: {
+      get () {
+        return this.toolbarKeyword
+      },
+      set (newVal) {
+        this.setToolbarKeyword(newVal)
+      }
     }
   },
   data () {
     return {
-      search: '',
+      articleTagList: [],
+      articleTagColorList: [],
+      archiveList: [],
+      timer: null,
       isSearchEmpty: true,
       isShowTags: false
     }
   },
+  watch: {
+    keyword () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.getArchiveList()
+      }, 100)
+    }
+  },
   methods: {
+    getArticleTagList () {
+      this.$http.get(process.env.API_HOST + '/articletag').then((res) => {
+        res = res.data
+        if (res.ret && res.data) {
+          this.articleTagList = res.data
+          this.articleTagList.forEach((item, index) => {
+            this.articleTagColorList.push('color' + Math.round(1 + Math.random() * 4))
+          })
+        }
+      })
+    },
+    getArchiveList () {
+      this.$http.get(process.env.API_HOST + '/searchlist', {
+        params: {
+          keyword: this.toolbarKeyword
+        }
+      }).then((res) => {
+        res = res.data
+        if (res.ret && res.data) {
+          this.archiveList = res.data
+        }
+      })
+    },
+    handleArticleTagClick (articleTagName) {
+      this.setToolbarKeyword('#' + articleTagName)
+    },
     toggleTag () {
       this.isShowTags = !this.isShowTags
     },
     handleMenuClick (menuIndex) {
       this.openToolBar(menuIndex)
     },
-    ...mapMutations(['openToolBar'])
+    ...mapMutations(['openToolBar', 'setToolbarKeyword'])
+  },
+  created () {
+    this.getArticleTagList()
+    this.getArchiveList()
   }
 }
 </script>
@@ -153,8 +207,9 @@ export default {
       color: #e5e5e5
       overflow: hidden
       overflow-y: auto
+      &::-webkit-scrollbar
+        display: none
       .section-archive
-        height: 100%
         color: #e5e5e5
         overflow: hidden
         overflow-y: auto
@@ -325,41 +380,50 @@ export default {
                 vertical-align: middle
                 font-size: 16px
                 line-height: 28px
+                width: calc(100% - 26px)
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+                color: #fff
             .item-info
               font-size: 0
               .info-time
                 display: inline-block
                 vertical-align: middle
                 font-size: 0
+              .time-icon
                 color: #fffdd8
+                display: inline-block
+                vertical-align: middle
+                font-size: 16px
+                margin-right: 4px
+              .time-date
                 margin-right: 10px
-                line-height: 20px
-                .time-icon
-                  display: inline-block
-                  vertical-align: middle
-                  font-size: 16px
-                  margin-right: 4px
-                .time-date
-                  display: inline-block
-                  vertical-align: middle
-                  font-size: 12px
+                color: #fffdd8
+                line-height: 24px
+                display: inline-block
+                vertical-align: middle
+                font-size: 12px
               .info-tag
                 display: inline-block
                 vertical-align: middle
                 font-size: 0
+              .tag-icon
                 color: #fffdd8
-                line-height: 20px
-                .tag-icon
-                  display: inline-block
-                  vertical-align: middle
-                  font-size: 16px
-                  margin-right: 4px
-                .tag-item
-                  display: inline-block
-                  vertical-align: middle
-                  font-size: 12px
-                  margin-right: 6px
-                  cursor: pointer
+                display: inline-block
+                vertical-align: middle
+                font-size: 16px
+                margin-right: 4px
+              .tag-item
+                color: #fffdd8
+                line-height: 24px
+                display: inline-block
+                vertical-align: middle
+                font-size: 12px
+                margin-right: 6px
+                cursor: pointer
+                &:hover
+                  color: #fff
             &:hover
               background: hsla(0,0%,100%,.2)
       .section-about

@@ -11,5 +11,8 @@ export default {
   },
   closeToolBar (state) {
     state.isShowToolbar = false
+  },
+  setToolbarKeyword (state, keyword) {
+    state.toolbarKeyword = keyword
   }
 }

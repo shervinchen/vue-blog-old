@@ -1,22 +1,22 @@
 <template lang="html">
   <div class="main-reading">
-    <section class="section-book">
+    <section class="section-book" :class="{show:this.isShowToolbar}">
       <div class="book-entry">
         <div class="book-tab">
-          <span class="tab-item activited">已读</span>
-          <span class="tab-item">在读</span>
-          <span class="tab-item">想读</span>
+          <span @click="handleTabClick(index)" :class="tabStatus === index ? 'activited' : ''" class="tab-item" v-for="(tabItem, index) in tabList" :key="index">
+            {{tabItem.tabName}}
+          </span>
         </div>
         <div class="book-list">
-          <div class="book-card" v-for="item in [1,2,3,4,5]">
+          <div class="book-card" v-if="book.bookStatus === tabStatus" v-for="(book, index) in bookList" :key="index">
             <div class="card-image">
-              <img class="card-cover-image" src="https://img1.doubanio.com/view/subject/l/public/s27317967.jpg" alt="">
+              <img class="card-cover-image" :src="book.bookImgSrc" alt="">
             </div>
             <div class="card-content">
-              <p class="card-title">测试测试车</p>
+              <p class="card-title" :title="book.bookTitle">{{book.bookTitle}}</p>
               <div class="card-info">
-                <span class="card-score">评分：6.8</span>
-                <a class="card-link" href="javascript:;" target="_blank">
+                <span class="card-score">评分：{{book.bookScore}}</span>
+                <a class="card-link" :href="book.bookLink" target="_blank">
                   <i class="icon-share card-icon"></i>
                 </a>
               </div>
@@ -29,8 +29,99 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'Reading'
+  name: 'Reading',
+  computed: {
+    ...mapState(['isShowToolbar'])
+  },
+  data () {
+    return {
+      tabStatus: 0,
+      tabList: [
+        {
+          tabName: '已读'
+        },
+        {
+          tabName: '想读'
+        },
+        {
+          tabName: '在读'
+        }
+      ],
+      bookList: [
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3d25d0560.jpg',
+          bookTitle: 'JavaScript DOM编程艺术',
+          bookScore: '8.7',
+          bookLink: 'https://book.douban.com/subject/6038371/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3d73e2cf2.jpg',
+          bookTitle: 'JavaScript高级程序设计',
+          bookScore: '9.3',
+          bookLink: 'https://book.douban.com/subject/10546125/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3db5f32d5.jpg',
+          bookTitle: '程序员的数学',
+          bookScore: '7.2',
+          bookLink: 'https://book.douban.com/subject/19949020/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3ee233cc7.jpg',
+          bookTitle: '三体',
+          bookScore: '8.8',
+          bookLink: 'https://book.douban.com/subject/2567698/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4c1214e4a.jpg',
+          bookTitle: '活着',
+          bookScore: '9.3',
+          bookLink: 'https://book.douban.com/subject/4913064/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4c6bec2ff.jpg',
+          bookTitle: '迷人的假象',
+          bookScore: '8.2',
+          bookLink: 'https://book.douban.com/subject/25910698/'
+        },
+        {
+          bookStatus: 0,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4cfa4476a.jpg',
+          bookTitle: '思考的乐趣',
+          bookScore: '8.2',
+          bookLink: 'https://book.douban.com/subject/10779597/'
+        },
+        {
+          bookStatus: 2,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f506a8777d.jpg',
+          bookTitle: '无言的宇宙',
+          bookScore: '8.3',
+          bookLink: 'https://book.douban.com/subject/27599520/'
+        },
+        {
+          bookStatus: 2,
+          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f529e73030.jpg',
+          bookTitle: '数学女孩1',
+          bookScore: '9.0',
+          bookLink: 'https://book.douban.com/subject/26677354/'
+        }
+      ]
+    }
+  },
+  methods: {
+    handleTabClick (index) {
+      this.tabStatus = index
+    }
+  }
 }
 </script>
 
@@ -73,7 +164,7 @@ export default {
           .book-card
             display: inline-block
             vertical-align: middle
-            width: 20%
+            width: 25%
             padding-left: 15px
             padding-right: 15px
             margin: 15px 0
@@ -93,7 +184,7 @@ export default {
                 white-space: nowrap
                 overflow: hidden
                 text-overflow: ellipsis
-                font-size: 22px
+                font-size: 20px
                 line-height: 38px
                 font-weight: 300
                 color: #333
@@ -114,16 +205,11 @@ export default {
                     line-height: 26px
                     font-size: 20px
                     color: #08c
+      &.show
+        background: hsla(0,0%,100%,.3)
   @media screen and (max-width: 800px)
     .main-reading
       margin-bottom: 0
-  @media screen and (max-width: 1400px)
-    .main-reading
-      .section-book
-        .book-entry
-          .book-list
-            .book-card
-              width: 25%
   @media screen and (max-width: 1200px)
     .main-reading
       .section-book

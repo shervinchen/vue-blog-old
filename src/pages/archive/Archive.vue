@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="main-archive">
     <archive-list v-if="archiveDatas.length" :archiveDatas="archiveDatas"></archive-list>
-    <page-nav @change="handleChangePage" :pageOption="pageOption"></page-nav>
+    <page-nav v-if="pageOption.dataCount != 0" @change="handleChangePage" :pageOption="pageOption"></page-nav>
   </div>
 </template>
 

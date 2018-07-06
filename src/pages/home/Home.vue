@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="main-home">
     <home-article-list :articleDatas="articleDatas"></home-article-list>
-    <page-nav @change="handleChangePage" :pageOption="pageOption"></page-nav>
+    <page-nav v-if="pageOption.dataCount != 0" @change="handleChangePage" :pageOption="pageOption"></page-nav>
   </div>
 </template>
 

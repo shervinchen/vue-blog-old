@@ -22,11 +22,8 @@
           <div class="article-tag">
             <i class="icon-price-tags article-tag-icon"></i>
             <ul class="article-tag-list">
-              <li class="article-tag-list-item">
-                <a href="javascript:;" class="article-tag-list-link">旧事</a>
-              </li>
-              <li class="article-tag-list-item">
-                <a href="javascript:;" class="article-tag-list-link">游记</a>
+              <li class="article-tag-list-item" @click.stop="handleArticleTagClick(articleTag.articleTagName)" v-for="(articleTag, index) in articleData.articleTags" :key="index">
+                <a href="javascript:;" class="article-tag-list-link">{{articleTag.articleTagName}}</a>
               </li>
             </ul>
           </div>
@@ -42,7 +39,7 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'HomeArticleList',
@@ -61,6 +58,13 @@ export default {
       })
       return isShowToolbars
     }
+  },
+  methods: {
+    handleArticleTagClick (articleTagName) {
+      this.openToolBar(0)
+      this.setToolbarKeyword('#' + articleTagName)
+    },
+    ...mapMutations(['setToolbarKeyword', 'openToolBar'])
   }
 }
 </script>

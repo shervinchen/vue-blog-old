@@ -23,6 +23,11 @@ export default {
       articleData: {}
     }
   },
+  watch: {
+    '$route' (to, from) {
+      this.getArticleData()
+    }
+  },
   methods: {
     getArticleData () {
       this.$http.get(process.env.API_HOST + '/article', {

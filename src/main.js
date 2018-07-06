@@ -14,6 +14,10 @@ import 'style/_reset.css'
 import 'style/_border.css'
 import 'style/_property.css'
 import 'style/markdown.css'
+import 'style/prism.css'
+
+import VuePrism from 'vue-prism'
+Vue.use(VuePrism)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
