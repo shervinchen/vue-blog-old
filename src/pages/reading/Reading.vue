@@ -10,7 +10,8 @@
         <div class="book-list">
           <div class="book-card" v-if="book.bookStatus === tabStatus" v-for="(book, index) in bookList" :key="index">
             <div class="card-image">
-              <img class="card-cover-image" :src="book.bookImgSrc" alt="">
+              <vue-preview class="card-cover-image" :slides="slides[index]"></vue-preview>
+              <!-- <img class="card-cover-image" :src="book.bookImgSrc" alt=""> -->
             </div>
             <div class="card-content">
               <p class="card-title" :title="book.bookTitle">{{book.bookTitle}}</p>
@@ -38,6 +39,7 @@ export default {
   },
   data () {
     return {
+      slides: [],
       tabStatus: 0,
       tabList: [
         {
@@ -120,7 +122,23 @@ export default {
   methods: {
     handleTabClick (index) {
       this.tabStatus = index
+    },
+    initSlide () {
+      this.bookList.forEach((item, index) => {
+        let slide = {
+          src: item.bookImgSrc,
+          msrc: item.bookImgSrc,
+          alt: item.bookTitle,
+          title: item.bookTitle,
+          w: 1080,
+          h: 1380
+        }
+        this.slides.push([slide])
+      })
     }
+  },
+  mounted () {
+    this.initSlide()
   }
 }
 </script>

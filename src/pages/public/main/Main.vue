@@ -3,13 +3,11 @@
     <main-mobile-nav></main-mobile-nav>
     <slot></slot>
     <main-footer></main-footer>
-    <main-scroll></main-scroll>
   </div>
 </template>
 
 <script>
 import MainMobileNav from './components/MobileNav'
-import MainScroll from './components/Scroll'
 import MainFooter from './components/Footer'
 
 import { mapState } from 'vuex'
@@ -18,7 +16,6 @@ export default {
   name: 'AppMain',
   components: {
     MainMobileNav,
-    MainScroll,
     MainFooter
   },
   computed: {

@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="main-home">
-    <home-article-list :articleDatas="articleDatas"></home-article-list>
+    <vue-loading v-if="isShowLoading"></vue-loading>
+    <home-article-list v-if="!isShowLoading" :articleDatas="articleDatas"></home-article-list>
     <page-nav v-if="pageOption.dataCount != 0" @change="handleChangePage" :pageOption="pageOption"></page-nav>
   </div>
 </template>
@@ -17,6 +18,7 @@ export default {
   },
   data () {
     return {
+      isShowLoading: true,
       articleDatas: [],
       pageOption: {
         // 数据总数
@@ -39,6 +41,7 @@ export default {
   },
   methods: {
     getArticleDatas () {
+      this.isShowLoading = true
       this.$http.get(process.env.API_HOST + '/articlelist', {
         params: {
           page: parseInt(this.$route.params.page) || 1
@@ -49,6 +52,7 @@ export default {
           // const data = res.data
           this.articleDatas = res.data
           this.pageOption.dataCount = res.count
+          this.isShowLoading = false
         }
       })
     },

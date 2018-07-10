@@ -23,7 +23,6 @@
 
 .article-inner h2 {
   font-size: 23px;
-  font-size: 1.4375rem;
   line-height: 1.2173913043;
   margin-top: 2.4347826087em;
   margin-bottom: 1.2173913043em
@@ -31,7 +30,6 @@
 
 .article-inner h3 {
   font-size: 19px;
-  font-size: 1.1875rem;
   line-height: 1.1052631579;
   margin-top: 2.9473684211em;
   margin-bottom: 1.4736842105em
@@ -39,7 +37,6 @@
 
 .article-inner h4, .article-inner h5, .article-inner h6 {
   font-size: 16px;
-  font-size: 1rem;
   line-height: 1.3125;
   margin-top: 3.5em;
   margin-bottom: 1.75em
@@ -47,7 +44,7 @@
 
 .article-inner h4 {
   letter-spacing: .140625em;
-  text-transform: uppercase
+  /* text-transform: uppercase */
 }
 
 .article-inner h6 {
@@ -129,8 +126,10 @@
 }
 
 .article-entry ol, .article-entry ul {
-  font-size: 14px;
-  margin: 10px 0
+  /* font-size: 14px; */
+  margin: 10px 0;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .article-entry li ol, .article-entry li ul {

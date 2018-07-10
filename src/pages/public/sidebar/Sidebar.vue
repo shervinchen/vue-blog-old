@@ -222,7 +222,7 @@ export default {
               opacity: .7
               width: 28px
               height: 28px
-              line-height: 30px
+              line-height: 28px
               &:hover
                 opacity: 1
               &.github

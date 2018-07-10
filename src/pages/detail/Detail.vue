@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="main-detail">
-    <detail-article :articleData="articleData"></detail-article>
+    <vue-loading v-if="isShowLoading"></vue-loading>
+    <detail-article v-if="!isShowLoading" :articleData="articleData"></detail-article>
     <detail-article-nav></detail-article-nav>
     <detail-article-comment></detail-article-comment>
   </div>
@@ -20,6 +21,7 @@ export default {
   },
   data () {
     return {
+      isShowLoading: true,
       articleData: {}
     }
   },
@@ -30,6 +32,7 @@ export default {
   },
   methods: {
     getArticleData () {
+      this.isShowLoading = true
       this.$http.get(process.env.API_HOST + '/article', {
         params: {
           id: this.$route.params.id
@@ -38,6 +41,7 @@ export default {
         res = res.data
         if (res.ret && res.data) {
           this.articleData = res.data
+          this.isShowLoading = false
         }
       })
     }

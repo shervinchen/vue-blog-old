@@ -8,25 +8,25 @@
         <article class="archive-article" v-for="archiveArticle in archiveData.archiveArticles" :key="archiveArticle.articleId">
           <div class="archive-article-inner">
             <header class="archive-article-header">
-              <div class="archive-article-date">
-                <i class="icon-calendar date-icon"></i>
-                <span class="date-time">{{archiveArticle.articleDate}}</span>
-              </div>
               <h1 class="archive-article-title">
                 <router-link :title="archiveArticle.articleTitle" class="archive-article-title-link" :to="{ name: 'Detail', params: { id: archiveArticle.articleId } }">
                   {{archiveArticle.articleTitle}}
                 </router-link>
               </h1>
+              <div class="archive-article-date">
+                <i class="icon-calendar date-icon"></i>
+                <span class="date-time">{{archiveArticle.articleDate}}</span>
+              </div>
               <div class="archive-article-info">
                 <div class="archive-article-tag">
                   <i class="icon-price-tags article-tag-icon"></i>
-                  <ul class="article-tag-list">
-                    <li class="article-tag-list-item" v-for="(articleTag, index) in archiveArticle.articleTags" :key="index">
+                  <!-- <ul class="article-tag-list"> -->
+                    <div class="article-tag-list-item" v-for="(articleTag, index) in archiveArticle.articleTags" :key="index">
                       <a class="article-tag-list-link" :class="articleTag.articleTagColor" href="javascript:;">
                         {{articleTag.articleTagName}}
                       </a>
-                    </li>
-                  </ul>
+                    </div>
+                  <!-- </ul> -->
                 </div>
                 <!-- <div class="archive-article-category">
                   <i class="icon-book article-tag-icon"></i>
@@ -164,7 +164,7 @@ export default {
                     font-size: 16px
                   .article-tag-list
                     float: left
-                    .article-tag-list-item
+                  .article-tag-list-item
                       float: left
                       margin: 5px 0
                       .article-tag-list-link
@@ -229,6 +229,18 @@ export default {
       background: hsla(0,0%,100%,.3)
     &:first-child
       margin-top: 30px
+  @media screen and (max-width: 1200px)
+    .archive-list
+      .archive-wrap
+        .archive
+          .archive-article
+            .archive-article-inner
+              .archive-article-header
+                .archive-article-date
+                  float: none
+                  text-align: left
+                  top: 0
+                  margin-bottom: 6px
   @media screen and (max-width: 800px)
     .archive-list
       margin: 10px 10px 0
@@ -250,10 +262,4 @@ export default {
           .archive-article
             padding: 10px 0
             margin-left: 0
-            .archive-article-inner
-              .archive-article-header
-                .archive-article-date
-                  top: 10px
-                .archive-article-title
-                  width: 50%
 </style>

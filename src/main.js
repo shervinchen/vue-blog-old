@@ -17,7 +17,20 @@ import 'style/markdown.css'
 import 'style/prism.css'
 
 import VuePrism from 'vue-prism'
+import VueLoading from 'vue-loading-template'
+import VuePreview from 'vue-preview'
+
 Vue.use(VuePrism)
+Vue.use(VueLoading, {
+  type: 'spin',
+  color: '#2c3e50',
+  size: {
+    width: '50px',
+    height: '50px'
+  }
+})
+// defalut install
+Vue.use(VuePreview)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
