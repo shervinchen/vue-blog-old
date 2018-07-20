@@ -18,6 +18,10 @@
 
 > npm run build
 
+## 说明
+
+博客style来源自[hexo-theme-yilia](https://github.com/litten/hexo-theme-yilia)主题
+
 ## 测试
 
 > npm run test
