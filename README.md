@@ -22,6 +22,10 @@
 
 博客style来源自[hexo-theme-yilia](https://github.com/litten/hexo-theme-yilia)主题
 
+## 计划
+
+相册、文章评论、数据库集成
+
 ## 测试
 
 > npm run test
