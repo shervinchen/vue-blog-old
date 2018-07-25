@@ -14,9 +14,9 @@
         <div class="article-entry">
           <!-- markdown渲染数据 -->
           <vue-markdown>{{articleData.articleContent}}</vue-markdown>
-          <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more">
+          <!-- <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more">
             more&nbsp;>>
-          </router-link>
+          </router-link> -->
         </div>
         <div class="article-info">
           <div class="article-tag">

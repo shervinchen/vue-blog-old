@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-comment">
-    comment
+    <!-- comment -->
   </div>
 </template>
 
