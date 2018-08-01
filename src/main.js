@@ -19,6 +19,7 @@ import 'style/prism.css'
 import VuePrism from 'vue-prism'
 import VueLoading from 'vue-loading-template'
 import VuePreview from 'vue-preview'
+import { VueWheelsPagination } from 'vue-wheels'
 
 Vue.use(VuePrism)
 Vue.use(VueLoading, {
@@ -31,6 +32,8 @@ Vue.use(VueLoading, {
 })
 // defalut install
 Vue.use(VuePreview)
+
+Vue.use(VueWheelsPagination)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
