@@ -124,6 +124,7 @@ export default {
         &.current
           background-color: #88acdb
           cursor: default
+          color: #fff
           &:hover
             background-color: #88acdb
         &:hover
