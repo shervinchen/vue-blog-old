@@ -6,6 +6,7 @@ import Archive from '@/pages/archive/Archive'
 import Album from '@/pages/album/Album'
 import Reading from '@/pages/reading/Reading'
 import About from '@/pages/about/About'
+import Test from '@/pages/test/Test'
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: Test
     }
   ],
   scrollBehavior (to, from, savedPosition) {
