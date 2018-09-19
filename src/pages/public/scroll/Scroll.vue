@@ -17,7 +17,7 @@ export default {
     }
   },
   methods: {
-    initScroll () {
+    bindScroll () {
       let clientHeight = this.elem.clientHeight
       this.elem.addEventListener('scroll', () => {
         let osTop = this.elem.scrollTop
@@ -33,6 +33,9 @@ export default {
       })
     },
     goTop () {
+      if (this.timer) {
+        clearInterval(this.timer)
+      }
       this.timer = setInterval(() => {
         let osTop = this.elem.scrollTop
         let ispeed = Math.floor(-osTop / 5)
@@ -46,7 +49,7 @@ export default {
   },
   mounted () {
     this.elem = document.getElementById('app')
-    this.initScroll()
+    this.bindScroll()
   }
 }
 </script>

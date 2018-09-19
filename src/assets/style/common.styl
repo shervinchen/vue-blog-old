@@ -1,0 +1,73 @@
+/* loading */
+.vue-loading
+    position absolute
+    top: 50%
+    left: 50%
+    margin-top: -25px
+    margin-left: -25px
+
+/* 分页 */
+.pagination
+    text-align: center
+    margin: 30px 0
+    font-size: 0
+    .pagination-item
+        padding: 0
+        display: inline-block
+        vertical-align: middle
+        width: 20px
+        height: 26px
+        background-color: #4d4d4d
+        color: #fff
+        line-height: 26px
+        font-size: 12px
+        margin: 0 6px
+        border-radius: 2px
+        &.prev, &.next, &.first, &.last
+            display: inline-block
+            background: none
+            vertical-align: middle
+            color: #4d4d4d
+            opacity: 1
+            font-size: 16px
+            line-height: 26px
+            min-width: auto
+            width: auto
+            height: auto
+            &:hover
+                color: #5e5e5e
+                background: none
+        &.prev, &.next
+            margin: 0 28px
+        &.first, &.last
+            margin: 0
+        &.ellipsis
+            display: inline-block
+            vertical-align: middle
+            font-size: 16px
+            line-height: 26px
+            color: #4d4d4d
+            opacity: 1
+            cursor: default
+            background: none
+            min-width: auto
+            width: auto
+            height: auto
+            &:hover
+                background: none
+        &.current
+            background-color: #88acdb
+            cursor: default
+            color: #fff
+            &:hover
+                background-color: #88acdb
+        &:hover
+            background-color: #5e5e5e
+            color: #fff
+        &.first, &.last
+            display: none
+@media screen and (max-width: 800px)
+    .pagination
+        .pagination-item
+            &.prev, &.next
+                margin: 0 14px
