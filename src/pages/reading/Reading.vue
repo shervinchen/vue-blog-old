@@ -52,71 +52,7 @@ export default {
           tabName: '在读'
         }
       ],
-      bookList: [
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3d25d0560.jpg',
-          bookTitle: 'JavaScript DOM编程艺术',
-          bookScore: '8.7',
-          bookLink: 'https://book.douban.com/subject/6038371/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3d73e2cf2.jpg',
-          bookTitle: 'JavaScript高级程序设计',
-          bookScore: '9.3',
-          bookLink: 'https://book.douban.com/subject/10546125/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3db5f32d5.jpg',
-          bookTitle: '程序员的数学',
-          bookScore: '7.2',
-          bookLink: 'https://book.douban.com/subject/19949020/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f3ee233cc7.jpg',
-          bookTitle: '三体',
-          bookScore: '8.8',
-          bookLink: 'https://book.douban.com/subject/2567698/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4c1214e4a.jpg',
-          bookTitle: '活着',
-          bookScore: '9.3',
-          bookLink: 'https://book.douban.com/subject/4913064/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4c6bec2ff.jpg',
-          bookTitle: '迷人的假象',
-          bookScore: '8.2',
-          bookLink: 'https://book.douban.com/subject/25910698/'
-        },
-        {
-          bookStatus: 0,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f4cfa4476a.jpg',
-          bookTitle: '思考的乐趣',
-          bookScore: '8.2',
-          bookLink: 'https://book.douban.com/subject/10779597/'
-        },
-        {
-          bookStatus: 2,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f506a8777d.jpg',
-          bookTitle: '无言的宇宙',
-          bookScore: '8.3',
-          bookLink: 'https://book.douban.com/subject/27599520/'
-        },
-        {
-          bookStatus: 2,
-          bookImgSrc: 'https://i.loli.net/2018/07/06/5b3f529e73030.jpg',
-          bookTitle: '数学女孩1',
-          bookScore: '9.0',
-          bookLink: 'https://book.douban.com/subject/26677354/'
-        }
-      ]
+      bookList: []
     }
   },
   methods: {
@@ -135,10 +71,20 @@ export default {
         }
         this.slides.push([slide])
       })
+    },
+    getBookList () {
+      this.$http.get(process.env.API_HOST + '/booklist').then((res) => {
+        res = res.data
+        if (res.ret && res.data) {
+          // const data = res.data
+          this.bookList = res.data
+          this.initSlide()
+        }
+      })
     }
   },
   mounted () {
-    this.initSlide()
+    this.getBookList()
   }
 }
 </script>
