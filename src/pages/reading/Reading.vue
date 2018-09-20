@@ -59,7 +59,7 @@ export default {
     handleTabClick (index) {
       this.tabStatus = index
     },
-    initSlide () {
+    initSlides () {
       this.bookList.forEach((item, index) => {
         let slide = {
           src: item.bookImgSrc,
@@ -78,7 +78,7 @@ export default {
         if (res.ret && res.data) {
           // const data = res.data
           this.bookList = res.data
-          this.initSlide()
+          this.initSlides()
         }
       })
     }
