@@ -32,6 +32,7 @@ export default {
   },
   data () {
     return {
+      slides: [],
       albumTitle: {},
       albumArchives: []
     }
@@ -48,19 +49,20 @@ export default {
       })
     },
     initSlides () {
-      this.albumArchives.forEach((albumArchive, index) => {
-        albumArchive.archivePhotos.forEach((archivePhoto, index) => {
-          
+      this.albumArchives.forEach((albumArchive, archiveIndex) => {
+        let photos = []
+        albumArchive.archivePhotos.forEach((archivePhoto, photoIndex) => {
+          let photo = {
+            src: archivePhoto.photoSrc,
+            msrc: archivePhoto.photoMSrc,
+            alt: archivePhoto.photoInfo,
+            title: archivePhoto.photoInfo,
+            w: archivePhoto.photoWidth,
+            h: archivePhoto.photoHeight
+          }
+          photos.push(photo)
         })
-        let slide = {
-          src: item.bookImgSrc,
-          msrc: item.bookImgSrc,
-          alt: item.bookTitle,
-          title: item.bookTitle,
-          w: 1080,
-          h: 1380
-        }
-        this.slides.push([slide])
+        this.slides.push(photos)
       })
     }
   },
