@@ -8,11 +8,11 @@
           </header>
           <div class="album-entry">
             <div class="album-wrap">
-              <section class="album-archive">
-                <h1 class="archive-time">2018<em>4月</em></h1>
-                <ul class="archive-photos">
-
-                </ul>
+              <section class="album-archive" v-for="(albumArchive, index) in albumArchives" :key="albumArchive.archiveIndex">
+                <h1 class="archive-time">{{new Date(albumArchive.archiveTime).getFullYear()}}<em>{{new Date(albumArchive.archiveTime).getMonth() + 1}}月</em></h1>
+                <div class="archive-photos">
+                  <vue-preview class="archive-photo" v-for="(photo, phtopIndex) in slides[index]" :slides="photo" :key="phtopIndex"></vue-preview>
+                </div>
               </section>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default {
             w: archivePhoto.photoWidth,
             h: archivePhoto.photoHeight
           }
-          photos.push(photo)
+          photos.push([photo])
         })
         this.slides.push(photos)
       })
@@ -104,7 +104,7 @@ export default {
             .album-wrap
               position: relative
               min-height: 500px
-              .album-archives
+              .album-archive
                 position: relative
                 .archive-time
                   display: inline
@@ -116,6 +116,21 @@ export default {
                     font-style: normal
                     font-size: 14px
                     margin-left: 10px
+                .archive-photos
+                  display: flex
+                  flex-wrap: flex
+                  clear: both
+                  width: 100%
+                  text-align: left
+                  margin: 10px 0
+                  .archive-photo
+                    width: 25%
+                    height: 0
+                    padding-bottom: 25%
+                    position: relative
+                    display: inline-block
+                    text-align: center
+                    background-color: #ededed
         &.show
           background: hsla(0,0%,100%,.3)
   @media screen and (max-width: 800px)
@@ -139,4 +154,16 @@ export default {
                 margin-bottom: 10px
             .album-entry
               padding: 10px 0 30px
+  @media screen and (max-width: 600px)
+    .main-album
+      .album-wrap
+        .album-content
+          .album-inner
+            .album-entry
+              .album-wrap
+                .album-archives
+                  .archive-photos
+                    .archive-photo
+                      width: 50%
+                      padding-bottom: 50%
 </style>
