@@ -2,8 +2,8 @@
   <div class="main-detail">
     <vue-loading v-if="isShowLoading"></vue-loading>
     <detail-article v-if="!isShowLoading" :articleData="articleData"></detail-article>
-    <detail-article-nav></detail-article-nav>
-    <detail-article-comment></detail-article-comment>
+    <detail-article-nav v-if="!isShowLoading"></detail-article-nav>
+    <detail-article-comment v-if="!isShowLoading"></detail-article-comment>
   </div>
 </template>
 
