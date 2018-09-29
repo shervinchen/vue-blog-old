@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_HOST: '"https://api.rekodsc.com"'
+  API_HOST: '"https://api.csdoker.com"'
 }
