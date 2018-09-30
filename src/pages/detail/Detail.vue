@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  @import '~style/common.styl'
   .main-detail
     margin-bottom: 80px
   @media screen and (max-width: 800px)
