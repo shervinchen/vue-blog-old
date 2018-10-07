@@ -30,6 +30,7 @@ Vue.use(VueLoading, {
     height: '50px'
   }
 })
+
 // defalut install
 Vue.use(VuePreview)
 
