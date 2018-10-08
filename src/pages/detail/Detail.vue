@@ -4,6 +4,7 @@
     <detail-article v-if="!isShowLoading" :articleData="articleData"></detail-article>
     <detail-article-nav v-if="!isShowLoading"></detail-article-nav>
     <detail-article-comment v-if="!isShowLoading"></detail-article-comment>
+    <detail-article-directory v-if="!isShowLoading"></detail-article-directory>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import DetailArticle from './components/Article'
 import DetailArticleNav from './components/ArticleNav'
 import DetailArticleComment from './components/ArticleComment'
+import DetailArticleDirectory from './components/ArticleDirectory'
 
 export default {
   name: 'Detail',
   components: {
     DetailArticle,
     DetailArticleNav,
-    DetailArticleComment
+    DetailArticleComment,
+    DetailArticleDirectory
   },
   data () {
     return {
