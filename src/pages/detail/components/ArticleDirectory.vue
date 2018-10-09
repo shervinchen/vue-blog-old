@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="article-directory">
+  <div class="article-directory" v-if="isShowDirectory">
     <div class="directory-head">目录</div>
     <div class="directory-body">
       <article-directory-body :directories="directories"></article-directory-body>
@@ -17,6 +17,7 @@ export default {
   },
   data () {
     return {
+      isShowDirectory: false,
       directories: [
         // {
         //   title: '标题一',
@@ -62,6 +63,12 @@ export default {
   methods: {
     getDirectories () {
       let directoryElems = document.querySelector('.article-data').querySelectorAll('h1,h2,h3,h4,h5,h6')
+      if (directoryElems.length !== 0) {
+        this.isShowDirectory = true
+      } else {
+        this.isShowDirectory = false
+        return
+      }
       let parentItem = { id: -1 }
       let lastTreeItem = null
       let treeItem = {}
@@ -86,11 +93,11 @@ export default {
         if (treeItem.parent.id === -1) {
           this.directories.push(treeItem)
         } else {
-          this.directories.forEach((item, index) => {
-            if (treeItem.parent === item) {
-              item.children.push(treeItem)
-            }
-          })
+          // this.directories.forEach((item, index) => {
+          //   if (treeItem.parent === item) {
+          //     item.children.push(treeItem)
+          //   }
+          // })
         }
       })
       console.log(this.directories)

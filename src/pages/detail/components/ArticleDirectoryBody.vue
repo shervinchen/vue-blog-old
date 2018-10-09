@@ -33,7 +33,8 @@ export default {
     font-size: 14px
     font-family: -apple-system,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei",sans-serif
     li
-      line-height: 20px
+      line-height: 16px
+      margin: 8px 0
       a
         display: block
         padding: 3px 0
