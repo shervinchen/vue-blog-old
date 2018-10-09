@@ -3,15 +3,20 @@
     <article class="article-content" :class="{show:this.isShowToolbar}">
       <div class="article-inner">
         <header class="article-header">
-          <h1 class="article-title">{{articleData.articleTitle}}</h1>
-          <div class="article-date">
-            <i class="icon-calendar date-icon"></i>
-            <span class="date-time">{{articleData.articleDate}}</span>
+          <div class="article-header-wrap">
+            <h1 class="article-title">{{articleData.articleTitle}}</h1>
+            <div class="article-date">
+              <i class="icon-calendar date-icon"></i>
+              <span class="date-time">{{articleData.articleDate}}</span>
+            </div>
           </div>
         </header>
         <div class="article-entry">
-          <!-- markdown渲染数据 -->
-          <vue-markdown v-if="articleData.articleContent" :source="articleData.articleContent"></vue-markdown>
+          <div class="article-data">
+            <!-- markdown渲染数据 -->
+            <vue-markdown v-if="articleData.articleContent" :source="articleData.articleContent"></vue-markdown>
+          </div>
+          <article-directory></article-directory>
           <!-- <a href="javascript:;" class="article-more">more&nbsp;>></a> -->
         </div>
         <div class="article-info">
@@ -34,12 +39,15 @@
 </template>
 
 <script>
+import ArticleDirectory from './ArticleDirectory'
+
 import VueMarkdown from 'vue-markdown'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'DetailArticle',
   components: {
+    ArticleDirectory,
     VueMarkdown
   },
   props: {
@@ -72,36 +80,41 @@ export default {
         border-color: #d1d1d1
         .article-header
           border-left: 5px solid #4d4d4d
-          padding: 30px 0 25px 25px
+          padding-top: 30px
           padding-left: 8%
-          .article-title
-            display: inline
-            color: #696969
-            font-weight: 300
-            line-height: 36px
-            font-size: 26px
-            transition: color .3s
-            margin: 0
-          .article-date
-            float: right
-            margin-right: 8%
-            font-size: 0
-            line-height: 28px
-            color: #999
-            .date-icon
-              display: inline-block
-              vertical-align: middle
-              margin-right: 6px
-            .date-time
-              display: inline-block
-              vertical-align: middle
-              font-size: 16px
+          padding-right: 8%
+          margin-bottom: 25px
+          .article-header-wrap
+            border-bottom: 1px dotted #ddd
+            .article-title
+              display: block
+              color: #696969
+              font-weight: 300
+              line-height: 36px
+              font-size: 26px
+              transition: color .3s
+              margin: 0 0 20px 0
+            .article-date
+              font-size: 0
+              line-height: 28px
+              color: #999
+              .date-icon
+                display: inline-block
+                vertical-align: middle
+                margin-right: 6px
+              .date-time
+                display: inline-block
+                vertical-align: middle
+                font-size: 16px
         .article-entry
           line-height: 1.8em
           padding: 0 8%
-          .article-more
-            color: #08c
-            font-size: 16px
+          .article-data
+            display: inline-block
+            width: calc(100% - 220px)
+            .article-more
+              color: #08c
+              font-size: 16px
         .article-info
           padding-top: 20px
           margin: 30px 8% 0
@@ -157,6 +170,14 @@ export default {
             display: none
       &.show
         background: hsla(0,0%,100%,.3)
+  @media screen and (max-width: 1200px)
+    .article-wrap
+      .article-content
+        .article-inner
+          .article-entry
+            .article-data
+              display: block
+              width: 100%
   @media screen and (max-width: 800px)
     .article-wrap
       .article-content
@@ -169,13 +190,12 @@ export default {
           .article-header
             border-left: none
             padding: 0
-            border-bottom: 1px dotted #ddd
-            .article-title
-              display: block
-              font-size: 18px
-              margin-bottom: 10px
-            .article-date
-              float: none
+            margin-bottom: 0
+            .article-header-wrap
+              .article-title
+                display: block
+                font-size: 18px
+                margin-bottom: 10px
           .article-entry
             padding: 10px 0 30px
           .article-info

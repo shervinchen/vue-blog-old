@@ -7,8 +7,10 @@
             <h1 class="article-title">{{articleData.articleTitle}}</h1>
           </header>
           <div class="article-entry">
-            <!-- markdown渲染数据 -->
-            <vue-markdown v-if="articleData.articleContent" :source="articleData.articleContent"></vue-markdown>
+            <div class="article-data">
+              <!-- markdown渲染数据 -->
+              <vue-markdown v-if="articleData.articleContent" :source="articleData.articleContent"></vue-markdown>
+            </div>
           </div>
         </div>
       </article>

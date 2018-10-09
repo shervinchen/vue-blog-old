@@ -12,11 +12,13 @@
           </div>
         </header>
         <div class="article-entry">
-          <!-- markdown渲染数据 -->
-          <vue-markdown>{{articleData.articleContent}}</vue-markdown>
-          <!-- <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more">
-            more&nbsp;>>
-          </router-link> -->
+          <div class="article-data">
+            <!-- markdown渲染数据 -->
+            <vue-markdown>{{articleData.articleContent}}</vue-markdown>
+            <!-- <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more">
+              more&nbsp;>>
+            </router-link> -->
+          </div>
         </div>
         <div class="article-info">
           <div class="article-tag">

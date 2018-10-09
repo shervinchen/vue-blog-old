@@ -70,11 +70,11 @@
   padding-left: 8%
 }
 
-.article-entry p {
+.article-data p {
   margin-top: 10px
 }
 
-.article-entry li code, .article-entry p code {
+.article-data li code, .article-data p code {
   padding: 1px 3px;
   margin: 0 3px;
   background: #ddd;
@@ -84,7 +84,7 @@
   font-size: 14px
 }
 
-.article-entry blockquote {
+.article-data blockquote {
   background: #ddd;
   border-left: 5px solid #ccc;
   padding: 15px 20px;
@@ -93,16 +93,16 @@
   background: #f6f6f6
 }
 
-.article-entry blockquote p {
+.article-data blockquote p {
   margin-top: 0;
   margin-bottom: 0
 }
 
-.article-entry em {
+.article-data em {
   font-style: italic
 }
 
-.article-entry ul li:before {
+.article-data ul li:before {
   content: "";
   width: 6px;
   height: 6px;
@@ -115,37 +115,37 @@
   margin-top: 10px
 }
 
-.article-entry ol {
+.article-data ol {
   counter-reset: item
 }
 
-.article-entry ol li:before {
+.article-data ol li:before {
   counter-increment: item;
   content: counter(item) ".";
   margin-right: 10px
 }
 
-.article-entry ol, .article-entry ul {
+.article-data ol, .article-data ul {
   /* font-size: 14px; */
   margin: 10px 0;
   word-break: break-all;
   word-wrap: break-word;
 }
 
-.article-entry li ol, .article-entry li ul {
+.article-data li ol, .article-data li ul {
   margin-left: 30px
 }
 
-.article-entry li ol li:before, .article-entry li ul li:before {
+.article-data li ol li:before, .article-data li ul li:before {
   content: "";
   background: #dedede
 }
 
-.article-entry h1 {
+.article-data h1 {
   margin-top: 30px
 }
 
-.article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6 {
+.article-data h2, .article-data h3, .article-data h4, .article-data h5, .article-data h6 {
   margin-top: 20px;
   font-weight: 700;
   color: #574c4c;
@@ -153,21 +153,21 @@
   border-bottom: 1px solid #ddd
 }
 
-.article-entry video {
+.article-data video {
   max-width: 100%
 }
 
-.article-entry strong {
+.article-data strong {
   font-weight: 700
 }
 
-.article-entry .caption {
+.article-data .caption {
   display: block;
   font-size: .8em;
   color: #aaa
 }
 
-.article-entry hr {
+.article-data hr {
   height: 0;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -177,7 +177,7 @@
   border-bottom: 1px solid #fff
 }
 
-.article-entry pre {
+.article-data pre {
   line-height: 1.5;
   margin-top: 10px;
   padding: 5px 15px;
@@ -188,40 +188,40 @@
   font-family: Menlo, Monaco, Andale Mono, lucida console, Courier New, monospace
 }
 
-.article-entry pre code {
+.article-data pre code {
   font-size: 14px
 }
 
-.article-entry table {
+.article-data table {
   width: 100%;
   border: 1px solid #dedede;
   margin: 15px 0;
   border-collapse: collapse
 }
 
-.article-entry table td, .article-entry table tr {
+.article-data table td, .article-data table tr {
   height: 35px
 }
 
-.article-entry table thead tr {
+.article-data table thead tr {
   background: #f8f8f8
 }
 
-.article-entry table tbody tr:hover {
+.article-data table tbody tr:hover {
   background: #efefef
 }
 
-.article-entry table td, .article-entry table th {
+.article-data table td, .article-data table th {
   border: 1px solid #dedede;
   padding: 0 10px
 }
 
-.article-entry figure table {
+.article-data figure table {
   border: none;
   width: auto;
   margin: 0
 }
 
-.article-entry figure table tbody tr:hover {
+.article-data figure table tbody tr:hover {
   background: none
 }
