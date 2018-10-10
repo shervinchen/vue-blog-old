@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     goAnchor (index) {
+      console.log(index)
       document.querySelector('#app').scrollTop = document.querySelector('#articleHeader' + index).offsetTop
     }
   },

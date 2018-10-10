@@ -18,8 +18,7 @@ export default {
   data () {
     return {
       isShowDirectory: false,
-      directories: [],
-      records: []
+      directories: []
     }
   },
   methods: {
@@ -64,37 +63,41 @@ export default {
       }
       return this.formatDirectories(arr, i, parent)
     },
-    resetDirectories (aaa) {
-      // console.log(this.records)
-      this.records.forEach((record, index) => {
-        // if (record.index === 16) {
-        //   console.log(record)
-        // }
-        // if (record.index < aaa) {
-          record.isActive = false
-        // }
-      })
+    resetDirectories (directory) {
+      let list = [directory]
+      while (list.length > 0) {
+        const obj = list.shift()
+        if (obj.isActive) {
+          obj.isActive = false
+          return true
+        }
+        console.log(obj)
+        if (obj.hasOwnProperty('children')) {
+          list = list.concat(obj.children)
+        }
+      }
     },
     findDirectories (directory, scrollTop) {
       let list = [directory]
       while (list.length > 0) {
         const obj = list.shift()
         if (scrollTop >= document.querySelector('#articleHeader' + obj.index).offsetTop) {
-          this.records.push(obj)
-          console.log(this.records)
-          this.resetDirectories(obj.index)
+          for (let i = 0; i < this.directories.length; i++) {
+            if (this.resetDirectories(this.directories[i])) {
+              break
+            }
+          }
+          console.log(obj)
           obj.isActive = true
         } else {
           obj.isActive = false
         }
-        // this.records.push(obj)
         if (obj.hasOwnProperty('children')) {
           list = list.concat(obj.children)
         }
       }
     },
     handleScroll (e) {
-      this.records = []
       // 当前滚动距离
       let scrollTop = document.querySelector('#app').scrollTop
       for (let i = 0; i < this.directories.length; i++) {
