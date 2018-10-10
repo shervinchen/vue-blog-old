@@ -1,7 +1,7 @@
 <template lang="html">
   <ul>
-    <li v-for="(item, index) of directories" :key="index">
-      <a href="javascript:;" @click="goAnchor(item.offsetTop)">{{item.title}}</a>
+    <li :class="{'active': item.isActive, 'normal': !item.isActive}" v-for="(item, index) of directories" :key="index">
+      <a href="javascript:;" @click="goAnchor(item.index)">{{item.title}}</a>
       <article-directory-body v-if="item.children" :directories="item.children"></article-directory-body>
     </li>
   </ul>
@@ -17,9 +17,8 @@ export default {
     return {}
   },
   methods: {
-    goAnchor (offsetTop) {
-      // console.log(offsetTop)
-      document.querySelector('#app').scrollTop = offsetTop
+    goAnchor (index) {
+      document.querySelector('#app').scrollTop = document.querySelector('#articleHeader' + index).offsetTop
     }
   },
   mounted () {}
@@ -38,8 +37,44 @@ export default {
       a
         display: block
         padding: 3px 0
-        color: #000
       ul
         padding-left: 15px
         list-style-type: square
+        li
+          ul
+            li
+              ul
+                li
+                  &.normal
+                    color: #1a1a1a
+                    a
+                      color: #000
+                  &.active
+                    color: #009a61
+                    a
+                      color: #009a61
+              &.normal
+                color: #1a1a1a
+                a
+                  color: #000
+              &.active
+                color: #009a61
+                a
+                  color: #009a61
+          &.normal
+            color: #1a1a1a
+            a
+              color: #000
+          &.active
+            color: #009a61
+            a
+              color: #009a61
+      &.normal
+        color: #1a1a1a
+        a
+          color: #000
+      &.active
+        color: #009a61
+        a
+          color: #009a61
 </style>

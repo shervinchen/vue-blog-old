@@ -18,46 +18,8 @@ export default {
   data () {
     return {
       isShowDirectory: false,
-      directories: [
-        // {
-        //   title: '标题一',
-        //   isActive: false
-        // },
-        // {
-        //   title: '标题二',
-        //   isActive: false,
-        //   children: [
-        //     {
-        //       title: '标题四',
-        //       isActive: false
-        //     },
-        //     {
-        //       title: '标题五',
-        //       isActive: false
-        //     }
-        //   ]
-        // },
-        // {
-        //   title: '标题六',
-        //   isActive: false
-        // },
-        // {
-        //   title: '标题七',
-        //   isActive: false,
-        //   children: [
-        //     {
-        //       title: '标题八',
-        //       isActive: false,
-        //       children: [
-        //         {
-        //           title: '标题九',
-        //           isActive: false
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
-      ]
+      directories: [],
+      records: []
     }
   },
   methods: {
@@ -69,54 +31,96 @@ export default {
         this.isShowDirectory = false
         return
       }
-      let parentItem = { id: -1 }
-      let lastTreeItem = null
-      let treeItem = {}
       directoryElems.forEach((element, elemIndex) => {
         element.id = 'articleHeader' + elemIndex
-        treeItem = {
+        this.directories.push({
+          index: elemIndex,
           title: element.innerText || element.textContent,
           offsetTop: element.offsetTop,
           isActive: false,
           tagName: element.tagName,
-          children: [],
-          parent: parentItem
-        }
-        if (lastTreeItem) {
-          if (this.getLevel(treeItem.tagName) > this.getLevel(lastTreeItem.tagName)) {
-            treeItem.parent = lastTreeItem
-          } else {
-            treeItem.parent = this.findParent(treeItem, lastTreeItem)
-          }
-        }
-        lastTreeItem = treeItem
-        if (treeItem.parent.id === -1) {
-          this.directories.push(treeItem)
-        } else {
-          // this.directories.forEach((item, index) => {
-          //   if (treeItem.parent === item) {
-          //     item.children.push(treeItem)
-          //   }
-          // })
-        }
+          children: []
+        })
       })
-      console.log(this.directories)
     },
-    findParent (currTreeItem, lastTreeItem) {
-      let lastTreeParent = lastTreeItem.parent
-      while (lastTreeParent && (this.getLevel(currTreeItem.tagName) <= this.getLevel(lastTreeParent.tagName))) {
-        lastTreeParent = lastTreeParent.parent
+    formatDirectories (arr, i, parent) {
+      if (i >= arr.length) {
+        return i
       }
-      return lastTreeParent || { id: -1 }
+      let current = arr[i]
+      if (current.tagName > parent.tagName) {
+        parent.children.push(current)
+      } else {
+        return i
+      }
+      i++
+      let next = arr[i]
+      if (!next) {
+        return i
+      }
+      if (next.tagName > current.tagName) {
+        current.children = []
+        i = this.formatDirectories(arr, i, current)
+      }
+      return this.formatDirectories(arr, i, parent)
     },
-    getLevel (tagName) {
-      return tagName ? tagName.slice(1) : 0
+    resetDirectories (aaa) {
+      // console.log(this.records)
+      this.records.forEach((record, index) => {
+        // if (record.index === 16) {
+        //   console.log(record)
+        // }
+        // if (record.index < aaa) {
+          record.isActive = false
+        // }
+      })
+    },
+    findDirectories (directory, scrollTop) {
+      let list = [directory]
+      while (list.length > 0) {
+        const obj = list.shift()
+        if (scrollTop >= document.querySelector('#articleHeader' + obj.index).offsetTop) {
+          this.records.push(obj)
+          console.log(this.records)
+          this.resetDirectories(obj.index)
+          obj.isActive = true
+        } else {
+          obj.isActive = false
+        }
+        // this.records.push(obj)
+        if (obj.hasOwnProperty('children')) {
+          list = list.concat(obj.children)
+        }
+      }
+    },
+    handleScroll (e) {
+      this.records = []
+      // 当前滚动距离
+      let scrollTop = document.querySelector('#app').scrollTop
+      for (let i = 0; i < this.directories.length; i++) {
+        this.findDirectories(this.directories[i], scrollTop)
+      }
     }
   },
   mounted () {
+    document.querySelector('#app').addEventListener('scroll', this.handleScroll)
+    let root = {
+      index: -1,
+      title: '',
+      offsetTop: 0,
+      isActive: false,
+      tagName: 'H0',
+      children: []
+    }
     this.$nextTick(() => {
       this.getDirectories()
+      this.formatDirectories(this.directories, 0, root)
+      this.directories = root.children
+      // console.log(this.directories)
     })
+  },
+  destroyed () {
+    document.querySelector('#app').removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
