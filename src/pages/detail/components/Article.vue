@@ -21,8 +21,8 @@
         </div>
         <div class="article-info">
           <div class="article-tag">
-            <i class="icon-price-tags article-tag-icon"></i>
             <ul class="article-tag-list">
+              <i class="icon-price-tags article-tag-icon"></i>
               <li class="article-tag-list-item" @click.stop="handleArticleTagClick(articleTag.articleTagName)" v-for="(articleTag, index) in articleData.articleTags" :key="index">
                 <a href="javascript:;" class="article-tag-list-link">{{articleTag.articleTagName}}</a>
               </li>
@@ -117,18 +117,17 @@ export default {
               font-size: 16px
         .article-info
           padding-top: 20px
-          margin: 30px 8% 0
+          margin: 30px 8%
           min-height: 72px
           border-top: 1px solid #ddd
           .article-tag
             float: left
-            .article-tag-icon
-              color: #999
-              float: left
-              margin-right: 10px
-              margin-top: 6px
             .article-tag-list
-              float: left
+              .article-tag-icon
+                color: #999
+                float: left
+                margin-right: 10px
+                margin-top: 6px
               .article-tag-list-item
                 float: left
                 .article-tag-list-link

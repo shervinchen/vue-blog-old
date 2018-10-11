@@ -3,12 +3,14 @@
     <article v-for="(articleData, index) in articleDatas" :key="articleData.articleId" class="article-item" :class="{show: isShowToolbars[index]}">
       <div class="article-inner">
         <header class="article-header">
-          <router-link tag="h1" :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-title">
-            {{articleData.articleTitle}}
-          </router-link>
-          <div class="article-date">
-            <i class="icon-calendar date-icon"></i>
-            <span class="date-time">{{articleData.articleDate}}</span>
+          <div class="article-header-wrap">
+            <router-link tag="h1" :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-title">
+              {{articleData.articleTitle}}
+            </router-link>
+            <div class="article-date">
+              <i class="icon-calendar date-icon"></i>
+              <span class="date-time">{{articleData.articleDate}}</span>
+            </div>
           </div>
         </header>
         <div class="article-entry">
@@ -22,16 +24,16 @@
         </div>
         <div class="article-info">
           <div class="article-tag">
-            <i class="icon-price-tags article-tag-icon"></i>
             <ul class="article-tag-list">
+              <i class="icon-price-tags article-tag-icon"></i>
               <li class="article-tag-list-item" @click.stop="handleArticleTagClick(articleTag.articleTagName)" v-for="(articleTag, index) in articleData.articleTags" :key="index">
                 <a href="javascript:;" class="article-tag-list-link">{{articleTag.articleTagName}}</a>
               </li>
             </ul>
           </div>
-          <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more-link">
+          <!-- <router-link :to="{ name: 'Detail', params: { id: articleData.articleId } }" class="article-more-link">
             展开全文&nbsp;>>
-          </router-link>
+          </router-link> -->
           <div class="clearfix"></div>
         </div>
       </div>
@@ -85,31 +87,33 @@ export default {
         border-color: #d1d1d1
         .article-header
           border-left: 5px solid #4d4d4d
-          padding: 30px 0 25px 25px
+          padding-top: 30px
           padding-left: 8%
-          .article-title
-            display: inline
-            color: #696969
-            font-weight: 300
-            line-height: 36px
-            font-size: 26px
-            transition: color .3s
-            margin: 0
-            cursor: pointer
-          .article-date
-            float: right
-            margin-right: 8%
-            font-size: 0
-            line-height: 28px
-            color: #999
-            .date-icon
-              display: inline-block
-              vertical-align: middle
-              margin-right: 6px
-            .date-time
-              display: inline-block
-              vertical-align: middle
-              font-size: 16px
+          padding-right: 8%
+          margin-bottom: 25px
+          .article-header-wrap
+            border-bottom: 1px dotted #ddd
+            .article-title
+              display: block
+              color: #696969
+              font-weight: 300
+              line-height: 36px
+              font-size: 26px
+              transition: color .3s
+              margin: 0 0 20px 0
+              cursor: pointer
+            .article-date
+              font-size: 0
+              line-height: 28px
+              color: #999
+              .date-icon
+                display: inline-block
+                vertical-align: middle
+                margin-right: 6px
+              .date-time
+                display: inline-block
+                vertical-align: middle
+                font-size: 16px
         .article-entry
           line-height: 1.8em
           padding: 0 8%
@@ -118,18 +122,17 @@ export default {
             font-size: 16px
         .article-info
           padding-top: 20px
-          margin: 30px 8% 0
+          margin: 30px 8% 20px
           min-height: 72px
           border-top: 1px solid #ddd
           .article-tag
             float: left
-            .article-tag-icon
-              color: #999
-              float: left
-              margin-right: 10px
-              margin-top: 6px
             .article-tag-list
-              float: left
+              .article-tag-icon
+                color: #999
+                float: left
+                margin-right: 10px
+                margin-top: 6px
               .article-tag-list-item
                 float: left
                 .article-tag-list-link
@@ -194,13 +197,12 @@ export default {
           .article-header
             border-left: none
             padding: 0
-            border-bottom: 1px dotted #ddd
-            .article-title
-              display: block
-              font-size: 18px
-              margin-bottom: 10px
-            .article-date
-              float: none
+            margin-bottom: 0
+            .article-header-wrap
+              .article-title
+                display: block
+                font-size: 18px
+                margin-bottom: 10px
           .article-entry
             padding: 10px 0 30px
           .article-info

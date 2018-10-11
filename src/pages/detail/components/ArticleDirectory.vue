@@ -2,7 +2,7 @@
   <div class="article-directory" v-if="isShowDirectory">
     <div class="directory-head">目录</div>
     <div class="directory-body">
-      <article-directory-body :directories="directories"></article-directory-body>
+      <article-directory-body @setDirectory="setDirectory" :directories="directories"></article-directory-body>
     </div>
   </div>
 </template>
@@ -19,6 +19,8 @@ export default {
     return {
       isShowDirectory: false,
       directories: [],
+      lastDirectoryIndex: 0,
+      clickDirectoryIndex: 0,
       appElem: document.querySelector('#app')
     }
   },
@@ -74,17 +76,27 @@ export default {
       })
     },
     findDirectories (node) {
-      node.forEach(item => {
-        if (this.appElem.scrollTop >= document.querySelector(`#articleHeader${item.index}`).offsetTop) {
-          this.resetDirectories(this.directories)
-          item.isActive = true
-        } else {
-          item.isActive = false
-        }
-        // console.log(item)
-        // 有子数据的先遍历子数据
-        item.children && this.findDirectories(item.children)
-      })
+      if (this.clickDirectoryIndex !== this.lastDirectoryIndex) {
+        node.forEach((item, index) => {
+          if (this.appElem.scrollTop >= document.querySelector(`#articleHeader${item.index}`).offsetTop) {
+            this.resetDirectories(this.directories)
+            item.isActive = true
+          } else {
+            item.isActive = false
+          }
+          // 有子数据的先遍历子数据
+          item.children && this.findDirectories(item.children)
+        })
+      } else {
+        this.clickDirectoryIndex = 0
+      }
+    },
+    setDirectory (item) {
+      this.clickDirectoryIndex = item.index
+      if (item.index === this.lastDirectoryIndex) {
+        this.resetDirectories(this.directories)
+        item.isActive = true
+      }
     },
     handleScroll (e) {
       this.findDirectories(this.directories)
@@ -101,10 +113,11 @@ export default {
     }
     this.$nextTick(() => {
       this.getDirectories()
+      // console.log(this.directories)
+      this.lastDirectoryIndex = this.directories[this.directories.length - 1].index
       this.formatDirectories(this.directories, 0, root)
       this.directories = root.children
       this.appElem.addEventListener('scroll', this.handleScroll)
-      // console.log(this.directories)
     })
   },
   destroyed () {

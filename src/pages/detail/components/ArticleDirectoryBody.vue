@@ -2,7 +2,7 @@
   <ul>
     <li :class="{'active': item.isActive, 'normal': !item.isActive}" v-for="(item, index) of directories" :key="index">
       <a href="javascript:;" @click="goAnchor(item)">{{item.title}}</a>
-      <article-directory-body v-if="item.children" :directories="item.children"></article-directory-body>
+      <article-directory-body @setDirectory="setDirectory" v-if="item.children" :directories="item.children"></article-directory-body>
     </li>
   </ul>
 </template>
@@ -18,8 +18,11 @@ export default {
   },
   methods: {
     goAnchor (item) {
-      // this.$emit()
+      this.$emit('setDirectory', item)
       document.querySelector('#app').scrollTop = document.querySelector(`#articleHeader${item.index}`).offsetTop
+    },
+    setDirectory (item) {
+      this.$emit('setDirectory', item)
     }
   },
   mounted () {}
